@@ -1,4 +1,4 @@
-import 'package:eventpass_app/presentation/pages/admin/home/home_page.dart';
+import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
 import 'package:flutter/material.dart';

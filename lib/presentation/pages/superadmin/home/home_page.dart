@@ -1,11 +1,11 @@
 import 'package:eventpass_app/presentation/misc/methods.dart';
+import 'package:eventpass_app/presentation/pages/superadmin/home/methods/statistic_card.dart';
+import 'package:eventpass_app/presentation/providers/superadmin/chart_data/chart_data_provider.dart';
 import 'package:eventpass_app/presentation/widgets/chart/bar_chart.dart';
 import 'package:eventpass_app/presentation/widgets/chart/line_chart.dart';
 import 'package:eventpass_app/presentation/widgets/chart/pie_chart.dart';
-import 'package:eventpass_app/presentation/pages/admin/home/methods/statistic_card.dart';
 import 'package:eventpass_app/presentation/widgets/text/title.dart';
 import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
-import 'package:eventpass_app/presentation/providers/admin/chart_data/chart_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,36 +36,43 @@ class HomePage extends ConsumerWidget {
                   lineChart(
                     context,
                     ref,
-                    'Pendapatan',
-                    ref.watch(revenueData),
+                    'Pengguna Baru',
+                    ref.watch(countNewRegisteredUsers),
+                  ),
+                  spaceForCard,
+                  lineChart(
+                    context,
+                    ref,
+                    'Trend Acara Yang di Unggah',
+                    ref.watch(countUploadedEvents),
                   ),
                   spaceForCard,
                   lineChart(
                     context,
                     ref,
                     'Penjualan Tiket',
-                    ref.watch(ticketSalesData),
+                    ref.watch(countTicketSales),
                   ),
                   spaceForCard,
                   barChart(
                     context,
                     ref,
                     'Kategori Acara Yang Ramai',
-                    ref.watch(categorySalesData),
+                    ref.watch(categoryGroupSales),
                   ),
                   spaceForCard,
                   barChart(
                     context,
                     ref,
                     'Rentang Umur Pengunjung',
-                    ref.watch(ageGroupData),
+                    ref.watch(ageGroupSales),
                   ),
                   spaceForCard,
                   pieChart(
                     context,
                     ref,
                     'Presentase Pengunjung',
-                    ref.watch(genderData),
+                    ref.watch(genderSales),
                   ),
                 ],
               )
