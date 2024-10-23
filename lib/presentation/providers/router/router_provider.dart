@@ -6,6 +6,10 @@ import 'package:eventpass_app/presentation/pages/superadmin/main_page.dart'
     as superadmin_main_page;
 import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
     as superadmin_home_page;
+import 'package:eventpass_app/presentation/pages/pengunjung/home/home_page.dart'
+    as pengunjung_home_page;
+import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
+    as pengunjung_main_page;
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -38,8 +42,21 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
                   const superadmin_home_page.HomePage(),
             ),
           ],
+        ),
+          GoRoute(
+          path: '/pengunjung',
+          name: 'pengunjung',
+          builder: (context, state) => const pengunjung_main_page.MainPage(),
+          routes: [
+            GoRoute(
+              path: 'home',
+              name: 'PengunjungHome',
+              builder: (context, state) =>
+                  const superadmin_home_page.HomePage(),
+            ),
+          ],
         )
       ],
-      initialLocation: '/superadmin',
+      initialLocation: '/pengunjung',
       debugLogDiagnostics: false,
     );
