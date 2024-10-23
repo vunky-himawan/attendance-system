@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 Widget userInfo(BuildContext context, WidgetRef ref,
         {bool withNotification = true, bool withLogout = false}) =>
@@ -51,12 +52,17 @@ Widget userInfo(BuildContext context, WidgetRef ref,
                   ),
                 ),
               if (withNotification)
-                Container(
-                  width: 64,
-                  height: 64,
-                  child: const Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.black,
+                GestureDetector(
+                  onTap: () {
+                    context.push('/notification');
+                  },
+                  child: Container(
+                    width: 64,
+                    height: 64,
+                    child: const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
             ],

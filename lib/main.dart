@@ -35,6 +35,7 @@ class MyApp extends ConsumerWidget {
           ),
           bodyLarge: GoogleFonts.poppins(
             color: ghostBlack,
+            fontWeight: FontWeight.w500,
           ),
           labelLarge: GoogleFonts.poppins(
             color: ghostBlack,

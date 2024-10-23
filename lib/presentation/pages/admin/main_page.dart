@@ -38,28 +38,29 @@ class _MainPageState extends ConsumerState<MainPage> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: BottomNavBar(
-                items: [
-                  BottomNavBarItem(
-                    index: 0,
-                    isSelected: selectedPage == 0,
-                    title: 'Home',
-                    icon: HeroIcons.home,
-                  ),
-                ],
-                onTap: (index) {
-                  selectedPage = index;
+              items: [
+                BottomNavBarItem(
+                  index: 0,
+                  isSelected: selectedPage == 0,
+                  title: 'Home',
+                  icon: HeroIcons.home,
+                ),
+              ],
+              onTap: (index) {
+                selectedPage = index;
 
-                  if (index == 3) {
-                    context.go('/profile');
-                  } else {
-                    pageController.animateToPage(
-                      selectedPage,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeInOut,
-                    );
-                  }
-                },
-                selectedIndex: 0),
+                if (index == 3) {
+                  context.go('/profile');
+                } else {
+                  pageController.animateToPage(
+                    selectedPage,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              },
+              selectedIndex: 0,
+            ),
           ),
         ],
       ),
