@@ -2,6 +2,7 @@ import 'package:eventpass_app/presentation/pages/admin/home/home_page.dart'
     as admin_home_page;
 import 'package:eventpass_app/presentation/pages/admin/main_page.dart'
     as admin_main_page;
+import 'package:eventpass_app/presentation/pages/notification/notification_page.dart';
 import 'package:eventpass_app/presentation/pages/superadmin/main_page.dart'
     as superadmin_main_page;
 import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
@@ -38,8 +39,13 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
                   const superadmin_home_page.HomePage(),
             ),
           ],
-        )
+        ),
+        GoRoute(
+          path: '/notification',
+          name: 'notification',
+          builder: (context, state) => const NotificationPage(),
+        ),
       ],
-      initialLocation: '/superadmin',
+      initialLocation: '/admin',
       debugLogDiagnostics: false,
     );
