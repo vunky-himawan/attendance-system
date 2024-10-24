@@ -10,6 +10,10 @@ import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
 import 'package:eventpass_app/presentation/pages/profile_event_organizer/main_page.dart'
     as profile_event_organizer_main_page;
 import 'package:eventpass_app/presentation/pages/welcome/welcome_page.dart';
+import 'package:eventpass_app/presentation/pages/pengunjung/home/home_page.dart'
+    as pengunjung_home_page;
+import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
+    as pengunjung_main_page;
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -48,6 +52,19 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
             ),
           ],
         ),
+          GoRoute(
+          path: '/pengunjung',
+          name: 'pengunjung',
+          builder: (context, state) => const pengunjung_main_page.MainPage(),
+          routes: [
+            GoRoute(
+              path: 'home',
+              name: 'PengunjungHome',
+              builder: (context, state) =>
+                  const superadmin_home_page.HomePage(),
+            ),
+          ],
+        ),
         GoRoute(
           path: '/notification',
           name: 'notification',
@@ -60,6 +77,6 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
               const profile_event_organizer_main_page.MainPage(),
         ),
       ],
-      initialLocation: '/',
+      initialLocation: '/pengunjung',
       debugLogDiagnostics: false,
     );
