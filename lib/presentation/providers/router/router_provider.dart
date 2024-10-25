@@ -11,6 +11,10 @@ import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
 import 'package:eventpass_app/presentation/pages/profile_event_organizer/main_page.dart'
     as profile_event_organizer_main_page;
 import 'package:eventpass_app/presentation/pages/welcome/welcome_page.dart';
+import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
+    as pengunjung_main_page;
+import 'package:eventpass_app/presentation/pages/checkout/checkout_page.dart'
+    as checkout_main_page; // Perbaikan Import
 import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart'
     as receptionist_home_page;
 import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
@@ -84,11 +88,17 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
               const profile_event_organizer_main_page.MainPage(),
         ),
         GoRoute(
+          path: '/checkout',
+          name: 'checkout',
+          builder: (context, state) =>
+              const checkout_main_page.CheckoutPage(), // Halaman checkout utama
+        ),
+        GoRoute(
           path: '/login',
           name: 'login',
           builder: (context, state) => const LoginPage(),
-        )
+        ),
       ],
-      initialLocation: '/receptionist',
+      initialLocation: '/',
       debugLogDiagnostics: true,
     );
