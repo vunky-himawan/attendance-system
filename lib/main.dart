@@ -3,9 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  setUrlStrategy(PathUrlStrategy());
 
   runApp(
     const ProviderScope(
@@ -22,10 +25,10 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       theme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: saffron,
+          seedColor: darkBlue,
           surface: backgroundColor,
           primary: ghostBlack,
-          secondary: saffron,
+          secondary: darkBlue,
           brightness: Brightness.dark,
         ),
         useMaterial3: true,
