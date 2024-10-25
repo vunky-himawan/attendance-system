@@ -72,35 +72,35 @@ class HomePage extends ConsumerWidget {
                       children: [
                         buildEventBox(
                           'Kotak 1',
-                          'assets/example.jpg',
+                          'assets/example-event.jpg',
                           eventName: 'Party for Big Startups Congratulations',
                           eventDuration: 'dalam 2 hari',
                         ),
                         SizedBox(width: 10),
                         buildEventBox(
                           'Kotak 2',
-                          'assets/example.jpg',
+                          'assets/example-event.jpg',
                           eventName: 'Startup Excellence Awards',
                           eventDuration: 'dalam 7 hari',
                         ),
                         SizedBox(width: 10),
                         buildEventBox(
                           'Kotak 3',
-                          'assets/example.jpg',
+                          'assets/example-event.jpg',
                           eventName: 'Startup Leaders Recognition Night',
                           eventDuration: 'dalam 1 hari',
                         ),
                         SizedBox(width: 10),
                         buildEventBox(
                           'Kotak 4',
-                          'assets/example.jpg',
+                          'assets/example-event.jpg',
                           eventName: 'Startup Milestone Celebration',
                           eventDuration: 'dalam 5 hari',
                         ),
                         SizedBox(width: 10),
                         buildEventBox(
                           'Kotak 5',
-                          'assets/example.jpg',
+                          'assets/example-event.jpg',
                           eventName: 'Startup Pioneers Recognition Event',
                           eventDuration: 'dalam 10 hari',
                         ),
@@ -118,19 +118,19 @@ class HomePage extends ConsumerWidget {
                 Column(
                   children: [
                     buildBox(
-                      'assets/example.jpg',
+                      'assets/example-event.jpg',
                       eventName: 'Future of Tech Innovations',
                       eventDuration: 'dalam 3 hari',
                     ),
                     SizedBox(height: 10), // Spasi antara kotak
                     buildBox(
-                      'assets/example.jpg',
+                      'assets/example-event.jpg',
                       eventName: 'Networking Night for Startups',
                       eventDuration: 'dalam 4 hari',
                     ),
                     SizedBox(height: 10), // Spasi antara kotak
                     buildBox(
-                      'assets/example.jpg',
+                      'assets/example-event.jpg',
                       eventName: 'Networking Night for Startups',
                       eventDuration: 'dalam 4 hari',
                     ),
