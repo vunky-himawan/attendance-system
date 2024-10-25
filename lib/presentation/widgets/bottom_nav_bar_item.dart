@@ -27,18 +27,18 @@ class BottomNavBarItem extends StatelessWidget {
               ? Icon(
                   icon,
                   size: 30,
-                  color: isSelected ? saffron : softGray,
+                  color: isSelected ? darkBlue : softGray,
                 )
               : HeroIcon(
                   icon,
                   size: 30,
-                  color: isSelected ? saffron : softGray,
+                  color: isSelected ? darkBlue : softGray,
                 ),
         ),
         Text(
           title,
           style: TextStyle(
-            color: isSelected ? saffron : softGray,
+            color: isSelected ? darkBlue : softGray,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),

@@ -1,12 +1,14 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
+import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends ConsumerWidget {
   const WelcomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -40,7 +42,7 @@ class WelcomePage extends StatelessWidget {
                 children: [
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: saffron),
+                      side: const BorderSide(color: darkBlue),
                       minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.grey.shade200,
                       shape: RoundedRectangleBorder(
@@ -57,12 +59,14 @@ class WelcomePage extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
-                      backgroundColor: saffron,
+                      backgroundColor: darkBlue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.watch(routerProvider).goNamed('login');
+                    },
                     child: const Text(
                       'Masuk',
                       style: TextStyle(color: Colors.white),

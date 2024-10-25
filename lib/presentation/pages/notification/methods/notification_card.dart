@@ -23,7 +23,7 @@ Widget notificationCard(
       children: [
         const HeroIcon(
           HeroIcons.inbox,
-          color: saffron,
+          color: darkBlue,
         ),
         horizontalSpace(16.0),
         Expanded(

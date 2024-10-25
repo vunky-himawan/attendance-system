@@ -33,7 +33,7 @@ Widget userInfo(
                     text: city,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: saffron,
+                      color: darkBlue,
                       fontSize: 14,
                     ),
                   ),
