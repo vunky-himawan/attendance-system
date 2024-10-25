@@ -33,6 +33,10 @@ class _MainPageState extends ConsumerState<MainPage> {
               Center(
                 child: HomePage(),
               ),
+              // Add placeholders or actual pages for Jadwal, Bookmark, and Profil
+              Center(child: Text("Jadwal Page")),
+              Center(child: Text("Bookmark Page")),
+              Center(child: Text("Profil Page")),
             ],
           ),
           Padding(
@@ -45,9 +49,29 @@ class _MainPageState extends ConsumerState<MainPage> {
                     title: 'Home',
                     icon: HeroIcons.home,
                   ),
+                  BottomNavBarItem(
+                    index: 1,
+                    isSelected: selectedPage == 1,
+                    title: 'Jadwal',
+                    icon: HeroIcons.clock,
+                  ),
+                  BottomNavBarItem(
+                    index: 2,
+                    isSelected: selectedPage == 2,
+                    title: 'Bookmark',
+                    icon: HeroIcons.bookmark,
+                  ),
+                  BottomNavBarItem(
+                    index: 3,
+                    isSelected: selectedPage == 3,
+                    title: 'Profil',
+                    icon: HeroIcons.user,
+                  ),
                 ],
                 onTap: (index) {
-                  selectedPage = index;
+                  setState(() {
+                    selectedPage = index;
+                  });
 
                   if (index == 3) {
                     context.go('/profile');
@@ -59,7 +83,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                     );
                   }
                 },
-                selectedIndex: 0),
+                selectedIndex: selectedPage),
           ),
         ],
       ),

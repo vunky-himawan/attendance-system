@@ -99,6 +99,6 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
           builder: (context, state) => const LoginPage(),
         ),
       ],
-      initialLocation: '/',
+      initialLocation: '/pengunjung',
       debugLogDiagnostics: true,
     );
