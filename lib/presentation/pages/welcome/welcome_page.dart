@@ -42,7 +42,7 @@ class WelcomePage extends ConsumerWidget {
                 children: [
                   OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: saffron),
+                      side: const BorderSide(color: darkBlue),
                       minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.grey.shade200,
                       shape: RoundedRectangleBorder(
@@ -59,7 +59,7 @@ class WelcomePage extends ConsumerWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
-                      backgroundColor: saffron,
+                      backgroundColor: darkBlue,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
