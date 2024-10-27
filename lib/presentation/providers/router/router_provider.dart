@@ -9,7 +9,9 @@ import 'package:eventpass_app/presentation/pages/superadmin/main_page.dart'
 import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
     as superadmin_home_page;
 import 'package:eventpass_app/presentation/pages/profile_event_organizer/main_page.dart'
-    as profile_event_organizer_main_page;
+    as user_main_page; // Perbaikan Import
+import 'package:eventpass_app/presentation/pages/user/user_page.dart'; // UserPage import
+import 'package:eventpass_app/presentation/pages/user/methods/user_card.dart'; // UserCard import
 import 'package:eventpass_app/presentation/pages/welcome/welcome_page.dart';
 import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
     as pengunjung_main_page;
@@ -17,8 +19,6 @@ import 'package:eventpass_app/presentation/pages/checkout/checkout_page.dart'
     as checkout_main_page; // Perbaikan Import
 import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart'
     as receptionist_home_page;
-import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
-    as pengunjung_main_page;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -85,7 +85,7 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
           path: '/event-organizer/details',
           name: 'eventOrganizerDetails',
           builder: (context, state) =>
-              const profile_event_organizer_main_page.MainPage(),
+              const user_main_page.MainPage(), // Sesuaikan rute ini jika diperlukan
         ),
         GoRoute(
           path: '/checkout',
@@ -98,7 +98,12 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
           name: 'login',
           builder: (context, state) => const LoginPage(),
         ),
+        GoRoute(
+          path: '/user', // Rute untuk halaman UserPage
+          name: 'user',
+          builder: (context, state) => const UserPage(), // Menampilkan UserPage
+        ),
       ],
-      initialLocation: '/pengunjung',
+      initialLocation: '/user',
       debugLogDiagnostics: true,
     );
