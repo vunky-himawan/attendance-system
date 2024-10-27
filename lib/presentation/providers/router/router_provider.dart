@@ -19,6 +19,7 @@ import 'package:eventpass_app/presentation/pages/checkout/checkout_page.dart'
     as checkout_main_page; // Perbaikan Import
 import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart'
     as receptionist_home_page;
+import 'package:eventpass_app/presentation/pages/verifikasi/success_page.dart'; // Import SuccessPage
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -103,7 +104,12 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
           name: 'user',
           builder: (context, state) => const UserPage(), // Menampilkan UserPage
         ),
+         GoRoute(
+          path: '/success', // Route for SuccessPage
+          name: 'success',
+          builder: (context, state) => const SuccessPage(), // Displays SuccessPage
+        ),
       ],
-      initialLocation: '/user',
+      initialLocation: '/success',
       debugLogDiagnostics: true,
     );
