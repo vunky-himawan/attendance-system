@@ -10,8 +10,7 @@ import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
     as superadmin_home_page;
 import 'package:eventpass_app/presentation/pages/profile_event_organizer/main_page.dart'
     as user_main_page; // Perbaikan Import
-import 'package:eventpass_app/presentation/pages/user/user_page.dart'; // UserPage import
-import 'package:eventpass_app/presentation/pages/user/methods/user_card.dart'; // UserCard import
+import 'package:eventpass_app/presentation/pages/user/user_page.dart';
 import 'package:eventpass_app/presentation/pages/welcome/welcome_page.dart';
 import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
     as pengunjung_main_page;
@@ -19,8 +18,10 @@ import 'package:eventpass_app/presentation/pages/checkout/checkout_page.dart'
     as checkout_main_page; // Perbaikan Import
 import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart'
     as receptionist_home_page;
-import 'package:eventpass_app/presentation/pages/verifikasi/success_page.dart'; // Import SuccessPage
-import 'package:eventpass_app/presentation/pages/verifikasi/error_page.dart'; // Import ErrorPage
+import 'package:eventpass_app/presentation/pages/speaker/speaker_page.dart';
+import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart';
+import 'package:eventpass_app/presentation/pages/verifikasi/success_page.dart';
+import 'package:eventpass_app/presentation/pages/verifikasi/error_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -86,8 +87,8 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
         GoRoute(
           path: '/event-organizer/details',
           name: 'eventOrganizerDetails',
-          builder: (context, state) =>
-              const user_main_page.MainPage(), // Sesuaikan rute ini jika diperlukan
+          builder: (context, state) => const user_main_page
+              .MainPage(), // Sesuaikan rute ini jika diperlukan
         ),
         GoRoute(
           path: '/checkout',
@@ -105,7 +106,7 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
           name: 'user',
           builder: (context, state) => const UserPage(), // Menampilkan UserPage
         ),
-         GoRoute(
+        GoRoute(
           path: '/success', // Route for SuccessPage
           name: 'success',
           builder: (context, state) => const SuccessPage(), // Displays SuccessPage
@@ -115,7 +116,12 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
           name: 'error',
           builder: (context, state) => const ErrorPage(), // Displays SuccessPage
         ),
+        GoRoute(
+          path: '/speaker', // Route for SuccessPage
+          name: 'speaker',
+          builder: (context, state) => const SpeakerPage(), // Displays SuccessPage
+        ),
       ],
-      initialLocation: '/error',
+      initialLocation: '/speaker',
       debugLogDiagnostics: true,
     );
