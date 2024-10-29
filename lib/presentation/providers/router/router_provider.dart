@@ -4,6 +4,7 @@ import 'package:eventpass_app/presentation/pages/admin/main_page.dart'
     as admin_main_page;
 import 'package:eventpass_app/presentation/pages/login/login_page.dart';
 import 'package:eventpass_app/presentation/pages/notification/notification_page.dart';
+import 'package:eventpass_app/presentation/pages/reception/reception_page.dart'; // Import ReceptionPage di sini
 import 'package:eventpass_app/presentation/pages/superadmin/main_page.dart'
     as superadmin_main_page;
 import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
@@ -19,7 +20,6 @@ import 'package:eventpass_app/presentation/pages/checkout/checkout_page.dart'
 import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart'
     as receptionist_home_page;
 import 'package:eventpass_app/presentation/pages/speaker/speaker_page.dart';
-import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/verifikasi/success_page.dart';
 import 'package:eventpass_app/presentation/pages/verifikasi/error_page.dart';
 import 'package:flutter/material.dart';
@@ -87,14 +87,13 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
         GoRoute(
           path: '/event-organizer/details',
           name: 'eventOrganizerDetails',
-          builder: (context, state) => const user_main_page
-              .MainPage(), // Sesuaikan rute ini jika diperlukan
+          builder: (context, state) => const user_main_page.MainPage(),
         ),
         GoRoute(
           path: '/checkout',
           name: 'checkout',
           builder: (context, state) =>
-              const checkout_main_page.CheckoutPage(), // Halaman checkout utama
+              const checkout_main_page.CheckoutPage(),
         ),
         GoRoute(
           path: '/login',
@@ -102,26 +101,31 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
           builder: (context, state) => const LoginPage(),
         ),
         GoRoute(
-          path: '/user', // Rute untuk halaman UserPage
+          path: '/user',
           name: 'user',
-          builder: (context, state) => const UserPage(), // Menampilkan UserPage
+          builder: (context, state) => const UserPage(),
         ),
         GoRoute(
-          path: '/success', // Route for SuccessPage
+          path: '/success',
           name: 'success',
-          builder: (context, state) => const SuccessPage(), // Displays SuccessPage
+          builder: (context, state) => const SuccessPage(),
         ),
         GoRoute(
-          path: '/error', // Route for SuccessPage
+          path: '/error',
           name: 'error',
-          builder: (context, state) => const ErrorPage(), // Displays SuccessPage
+          builder: (context, state) => const ErrorPage(),
         ),
         GoRoute(
-          path: '/speaker', // Route for SuccessPage
+          path: '/speaker',
           name: 'speaker',
-          builder: (context, state) => const SpeakerPage(), // Displays SuccessPage
+          builder: (context, state) => const SpeakerPage(),
+        ),
+        GoRoute(
+          path: '/reception',
+          name: 'reception',
+          builder: (context, state) => const ReceptionPage(),
         ),
       ],
-      initialLocation: '/speaker',
+      initialLocation: '/reception',
       debugLogDiagnostics: true,
     );
