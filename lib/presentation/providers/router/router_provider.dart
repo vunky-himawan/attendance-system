@@ -4,12 +4,14 @@ import 'package:eventpass_app/presentation/pages/admin/main_page.dart'
     as admin_main_page;
 import 'package:eventpass_app/presentation/pages/login/login_page.dart';
 import 'package:eventpass_app/presentation/pages/notification/notification_page.dart';
+import 'package:eventpass_app/presentation/pages/reception/reception_page.dart'; // Import ReceptionPage di sini
 import 'package:eventpass_app/presentation/pages/superadmin/main_page.dart'
     as superadmin_main_page;
 import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart'
     as superadmin_home_page;
 import 'package:eventpass_app/presentation/pages/profile_event_organizer/main_page.dart'
-    as profile_event_organizer_main_page;
+    as user_main_page; // Perbaikan Import
+import 'package:eventpass_app/presentation/pages/user/user_page.dart';
 import 'package:eventpass_app/presentation/pages/welcome/welcome_page.dart';
 import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
     as pengunjung_main_page;
@@ -17,8 +19,9 @@ import 'package:eventpass_app/presentation/pages/checkout/checkout_page.dart'
     as checkout_main_page; // Perbaikan Import
 import 'package:eventpass_app/presentation/pages/receptionist/home/home_page.dart'
     as receptionist_home_page;
-import 'package:eventpass_app/presentation/pages/pengunjung/main_page.dart'
-    as pengunjung_main_page;
+import 'package:eventpass_app/presentation/pages/speaker/speaker_page.dart';
+import 'package:eventpass_app/presentation/pages/verifikasi/success_page.dart';
+import 'package:eventpass_app/presentation/pages/verifikasi/error_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -84,21 +87,45 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
         GoRoute(
           path: '/event-organizer/details',
           name: 'eventOrganizerDetails',
-          builder: (context, state) =>
-              const profile_event_organizer_main_page.MainPage(),
+          builder: (context, state) => const user_main_page.MainPage(),
         ),
         GoRoute(
           path: '/checkout',
           name: 'checkout',
           builder: (context, state) =>
-              const checkout_main_page.CheckoutPage(), // Halaman checkout utama
+              const checkout_main_page.CheckoutPage(),
         ),
         GoRoute(
           path: '/login',
           name: 'login',
           builder: (context, state) => const LoginPage(),
         ),
+        GoRoute(
+          path: '/user',
+          name: 'user',
+          builder: (context, state) => const UserPage(),
+        ),
+        GoRoute(
+          path: '/success',
+          name: 'success',
+          builder: (context, state) => const SuccessPage(),
+        ),
+        GoRoute(
+          path: '/error',
+          name: 'error',
+          builder: (context, state) => const ErrorPage(),
+        ),
+        GoRoute(
+          path: '/speaker',
+          name: 'speaker',
+          builder: (context, state) => const SpeakerPage(),
+        ),
+        GoRoute(
+          path: '/reception',
+          name: 'reception',
+          builder: (context, state) => const ReceptionPage(),
+        ),
       ],
-      initialLocation: '/pengunjung',
+      initialLocation: '/reception',
       debugLogDiagnostics: true,
     );
