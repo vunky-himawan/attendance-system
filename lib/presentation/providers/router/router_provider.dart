@@ -1,3 +1,5 @@
+import 'package:eventpass_app/presentation/pages/event_organizer/add_event/methods/event_add_receptionist_page.dart';
+import 'package:eventpass_app/presentation/pages/event_organizer/add_event/methods/event_add_speaker_page.dart';
 import 'package:eventpass_app/presentation/pages/notification/notification_page.dart';
 import 'package:eventpass_app/presentation/pages/welcome/welcome_page.dart';
 import 'package:eventpass_app/presentation/pages/status/success_page.dart';
