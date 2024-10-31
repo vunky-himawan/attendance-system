@@ -1,7 +1,4 @@
-import 'package:eventpass_app/presentation/pages/event_organizer/list_of_event/list_of_event_page.dart';
-import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart';
-import 'package:eventpass_app/presentation/pages/superadmin/list_of_user/list_of_user_page.dart';
-import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
+import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
 import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
@@ -34,11 +31,9 @@ class _MainPageState extends ConsumerState<MainPage> {
                 },
               ),
               children: [
-                const HomePage(),
-                ListOfEventPage(
-                  isAdmin: false,
-                ),
-                const ListOfUserPage(),
+                HomePage(),
+                const Center(child: Text("Jadwal Page")),
+                const Center(child: Text("Bookmark Page")),
               ],
             ),
             Align(
@@ -58,18 +53,20 @@ class _MainPageState extends ConsumerState<MainPage> {
                   BottomNavBarItem(
                     index: 1,
                     isSelected: selectedPage == 1,
-                    title: 'Acara',
-                    icon: HeroIcons.listBullet,
+                    title: 'Jadwal',
+                    icon: HeroIcons.clock,
                   ),
                   BottomNavBarItem(
                     index: 2,
                     isSelected: selectedPage == 2,
-                    title: 'Pengguna',
-                    icon: HeroIcons.userGroup,
+                    title: 'Bookmark',
+                    icon: HeroIcons.bookmark,
                   ),
                 ],
                 onTap: (index) {
-                  selectedPage = index;
+                  setState(() {
+                    selectedPage = index;
+                  });
 
                   pageController.animateToPage(
                     selectedPage,
@@ -77,7 +74,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                     curve: Curves.easeInOut,
                   );
                 },
-                selectedIndex: 0,
+                selectedIndex: selectedPage,
               ),
             ),
           ],

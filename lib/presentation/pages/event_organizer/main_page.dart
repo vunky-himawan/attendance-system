@@ -1,6 +1,6 @@
+import 'package:eventpass_app/presentation/pages/event_organizer/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/list_of_event/list_of_event_page.dart';
-import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart';
-import 'package:eventpass_app/presentation/pages/superadmin/list_of_user/list_of_user_page.dart';
+import 'package:eventpass_app/presentation/pages/event_organizer/list_of_receptionist/list_of_receptionist_page.dart';
 import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
@@ -35,10 +35,8 @@ class _MainPageState extends ConsumerState<MainPage> {
               ),
               children: [
                 const HomePage(),
-                ListOfEventPage(
-                  isAdmin: false,
-                ),
-                const ListOfUserPage(),
+                ListOfEventPage(),
+                const ListOfReceptionistPage()
               ],
             ),
             Align(
@@ -64,7 +62,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                   BottomNavBarItem(
                     index: 2,
                     isSelected: selectedPage == 2,
-                    title: 'Pengguna',
+                    title: 'Resepsionis',
                     icon: HeroIcons.userGroup,
                   ),
                 ],
