@@ -120,7 +120,7 @@ class AddReceptionistEventPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Tambah Pembicara',
+          'Tambah Resepsionis',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -140,14 +140,14 @@ class AddReceptionistEventPage extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Pembicara',
+                    'Resepsionis',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
                   Text(
-                    'Tambah Pembicara',
+                    'Tambah Resepsionis',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -200,7 +200,7 @@ class AddReceptionistEventPage extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
                 child: const Text(
-                  'Selanjutnya',
+                  'Simpan',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
