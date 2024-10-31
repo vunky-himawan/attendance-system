@@ -110,7 +110,7 @@ class SearchBar extends StatelessWidget {
       ),
       child: const TextField(
         decoration: InputDecoration(
-          hintText: 'Cari acara',
+          hintText: 'Cari pembicara',
           prefixIcon: Icon(Icons.search),
           border: InputBorder.none,
           contentPadding:
