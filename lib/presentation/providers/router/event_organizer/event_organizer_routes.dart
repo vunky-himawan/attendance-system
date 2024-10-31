@@ -1,3 +1,5 @@
+import 'package:eventpass_app/presentation/pages/event_organizer/add_event/add_event_page.dart';
+import 'package:eventpass_app/presentation/pages/event_organizer/list_of_event/list_of_event_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/add_receptionist/add_receptionist_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/detail/detail_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/list_of_receptionist/list_of_receptionist_page.dart';
@@ -38,5 +40,17 @@ List<GoRoute> eventOrganizerRoutes = [
     path: '/event-organizer/receptionists',
     name: 'event_organizer_receptionists',
     builder: (context, state) => const ListOfReceptionistPage(),
+  ),
+  GoRoute(
+    path: '/event-organizer/events',
+    name: 'event_organizer_events',
+    builder: (context, state) => ListOfEventPage(),
+    routes: [
+      GoRoute(
+        path: 'add-event',
+        name: 'event_organizer_add_event',
+        builder: (context, state) => const AddEventPage(),
+      ),
+    ]
   ),
 ];

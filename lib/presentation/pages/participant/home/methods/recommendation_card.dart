@@ -11,7 +11,9 @@ Widget recommendationEventCard(
   return Container(
     height: 150,
     decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey),
+      border: Border.all(
+        color: ghost.withOpacity(0.2),
+      ),
       borderRadius: BorderRadius.circular(20),
     ),
     clipBehavior: Clip.antiAlias,

@@ -5,7 +5,6 @@ import 'package:eventpass_app/presentation/widgets/chart/bar_chart.dart';
 import 'package:eventpass_app/presentation/widgets/chart/line_chart.dart';
 import 'package:eventpass_app/presentation/widgets/chart/pie_chart.dart';
 import 'package:eventpass_app/presentation/widgets/text/title.dart';
-import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,9 +25,7 @@ class HomePage extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  userInfo(context, ref,
-                      withNotification: true, withLogout: false),
-                  spaceForCard,
+                  verticalSpace(80),
                   title(context, ref, 'Dashboard'),
                   spaceForTitle,
                   statisticCard(context, ref),

@@ -1,10 +1,13 @@
+import 'package:eventpass_app/presentation/pages/event_organizer/list_of_event/list_of_event_page.dart';
 import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart';
+import 'package:eventpass_app/presentation/pages/superadmin/list_of_user/list_of_user_page.dart';
+import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
+import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:go_router/go_router.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({super.key});
@@ -20,24 +23,31 @@ class _MainPageState extends ConsumerState<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          PageView(
-            controller: pageController,
-            onPageChanged: (value) => setState(
-              () {
-                selectedPage = value;
-              },
-            ),
-            children: const [
-              Center(
-                child: HomePage(),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            PageView(
+              controller: pageController,
+              onPageChanged: (value) => setState(
+                () {
+                  selectedPage = value;
+                },
               ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: BottomNavBar(
+              children: [
+                const HomePage(),
+                ListOfEventPage(
+                  isAdmin: false,
+                ),
+                const ListOfUserPage(),
+              ],
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: userInfo(context, ref),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: BottomNavBar(
                 items: [
                   BottomNavBarItem(
                     index: 0,
@@ -45,23 +55,33 @@ class _MainPageState extends ConsumerState<MainPage> {
                     title: 'Home',
                     icon: HeroIcons.home,
                   ),
+                  BottomNavBarItem(
+                    index: 1,
+                    isSelected: selectedPage == 1,
+                    title: 'Acara',
+                    icon: HeroIcons.listBullet,
+                  ),
+                  BottomNavBarItem(
+                    index: 2,
+                    isSelected: selectedPage == 2,
+                    title: 'Pengguna',
+                    icon: HeroIcons.userGroup,
+                  ),
                 ],
                 onTap: (index) {
                   selectedPage = index;
 
-                  if (index == 3) {
-                    context.go('/profile');
-                  } else {
-                    pageController.animateToPage(
-                      selectedPage,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeInOut,
-                    );
-                  }
+                  pageController.animateToPage(
+                    selectedPage,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
                 },
-                selectedIndex: 0),
-          ),
-        ],
+                selectedIndex: 0,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

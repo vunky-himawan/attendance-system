@@ -1,5 +1,4 @@
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
-import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
 import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
@@ -63,27 +62,17 @@ class _MainPageState extends ConsumerState<MainPage> {
                     title: 'Bookmark',
                     icon: HeroIcons.bookmark,
                   ),
-                  BottomNavBarItem(
-                    index: 3,
-                    isSelected: selectedPage == 3,
-                    title: 'Profil',
-                    icon: HeroIcons.user,
-                  ),
                 ],
                 onTap: (index) {
                   setState(() {
                     selectedPage = index;
                   });
 
-                  if (selectedPage == 3) {
-                    ref.watch(routerProvider).push('/profile');
-                  } else {
-                    pageController.animateToPage(
-                      selectedPage,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeInOut,
-                    );
-                  }
+                  pageController.animateToPage(
+                    selectedPage,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
                 },
                 selectedIndex: selectedPage,
               ),
