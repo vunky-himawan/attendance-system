@@ -13,17 +13,15 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 80.0),
-        child: SafeArea(
-          child: ListView(
-            children: [
-              Column(
+      body: SafeArea(
+        child: ListView(
+          children: [
+            userInfo(context, ref, withNotification: true, withLogout: false),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  userInfo(context, ref,
-                      withNotification: true, withLogout: false),
-                  verticalSpace(20),
                   Row(
                     children: [
                       Expanded(
@@ -70,7 +68,7 @@ class HomePage extends ConsumerWidget {
                           child: Row(
                             children: [
                               SvgPicture.asset(
-                                'assets/qr-scan.svg',
+                                'assets/choose.svg',
                                 colorFilter: const ColorFilter.mode(
                                     primaryOrange, BlendMode.srcIn),
                               ),
@@ -97,9 +95,9 @@ class HomePage extends ConsumerWidget {
                   historyAttendanceCard(
                       context, 'Absensi - PIN', 'John Doe', 'Berhasil'),
                 ],
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
