@@ -1,3 +1,4 @@
+import 'package:eventpass_app/presentation/pages/event/event_add_receptionist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
@@ -206,7 +207,7 @@ class AddPembicaraEventPage extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const AddPembicaraEventPage(),
+                      builder: (context) => const AddReceptionistEventPage(),
                     )
                   );
                 },
