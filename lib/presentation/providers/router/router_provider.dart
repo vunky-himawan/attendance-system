@@ -2,6 +2,8 @@ import 'package:eventpass_app/presentation/pages/admin/home/home_page.dart'
     as admin_home_page;
 import 'package:eventpass_app/presentation/pages/admin/main_page.dart'
     as admin_main_page;
+import 'package:eventpass_app/presentation/pages/event/event_main_page.dart'
+    as event_main_page;
 import 'package:eventpass_app/presentation/pages/login/login_page.dart';
 import 'package:eventpass_app/presentation/pages/notification/notification_page.dart';
 import 'package:eventpass_app/presentation/pages/reception/reception_page.dart'; // Import ReceptionPage di sini
@@ -60,6 +62,11 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
                   const superadmin_home_page.HomePage(),
             ),
           ],
+        ),
+        GoRoute(
+          path: '/event',
+          name: 'event',
+          builder: (context, state) => const event_main_page.EventPage(),
         ),
         GoRoute(
           path: '/receptionist',
