@@ -8,13 +8,15 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final int maxLines;
   final bool obscureText;
+  final bool isNumber;
   const CustomTextField(
       {super.key,
       required this.labelText,
       required this.controller,
       required this.hintText,
       this.maxLines = 1,
-      this.obscureText = false});
+      this.obscureText = false,
+      this.isNumber = false});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class CustomTextField extends StatelessWidget {
         ),
         verticalSpace(4),
         TextField(
+          keyboardType: isNumber ? TextInputType.number : TextInputType.text,
           controller: controller,
           obscureText: obscureText,
           maxLines: maxLines,

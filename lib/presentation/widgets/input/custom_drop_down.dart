@@ -6,11 +6,14 @@ class CustomDropDown extends StatefulWidget {
   final List<String> categories;
   final String labelText;
   final String hintText;
+  final Function(String)? onSelect;
+
   const CustomDropDown(
       {super.key,
       required this.categories,
       required this.labelText,
-      required this.hintText});
+      required this.hintText,
+      this.onSelect});
 
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
@@ -58,6 +61,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
             setState(() {
               _selectedCategory = newValue;
             });
+            widget.onSelect?.call(newValue!);
           },
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(

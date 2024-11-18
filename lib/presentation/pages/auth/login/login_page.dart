@@ -1,15 +1,19 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
+import 'package:eventpass_app/presentation/providers/user_data/user_data_provider.dart';
 import 'package:eventpass_app/presentation/widgets/input/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginPage extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
+class LoginPage extends ConsumerWidget {
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userState = ref.watch(userDataProvider);
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -41,13 +45,22 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
+              verticalSpace(10),
+              if (userState.hasError) ...[
+                Center(
+                  child: Text(
+                    userState.error!.toString(),
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
+              ],
               verticalSpace(40),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomTextField(
                     labelText: 'Email',
-                    controller: _emailController,
+                    controller: _usernameController,
                     hintText: 'Masukkan Email',
                   ),
                   verticalSpace(16),
@@ -66,7 +79,14 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      final username = _usernameController.text;
+                      final password = _passwordController.text;
+
+                      ref
+                          .read(userDataProvider.notifier)
+                          .login(username: username, password: password);
+                    },
                     child: const Text(
                       'Masuk',
                       style: TextStyle(color: Colors.white),
