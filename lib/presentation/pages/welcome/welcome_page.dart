@@ -49,7 +49,9 @@ class WelcomePage extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.watch(routerProvider).pushNamed('register');
+                    },
                     child: const Text(
                       'Daftar',
                       style: TextStyle(color: ghostBlack),
@@ -65,7 +67,7 @@ class WelcomePage extends ConsumerWidget {
                       ),
                     ),
                     onPressed: () {
-                      ref.watch(routerProvider).goNamed('login');
+                      ref.watch(routerProvider).pushNamed('login');
                     },
                     child: const Text(
                       'Masuk',

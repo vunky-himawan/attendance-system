@@ -1,19 +1,26 @@
-import 'package:eventpass_app/presentation/pages/event_organizer/add_event/methods/event_add_receptionist_page.dart';
-import 'package:eventpass_app/presentation/pages/event_organizer/add_event/methods/event_add_speaker_page.dart';
 import 'package:eventpass_app/presentation/pages/notification/notification_page.dart';
+import 'package:eventpass_app/presentation/pages/profile/main_page.dart';
 import 'package:eventpass_app/presentation/pages/welcome/welcome_page.dart';
 import 'package:eventpass_app/presentation/pages/status/success_page.dart';
 import 'package:eventpass_app/presentation/pages/status/error_page.dart';
 import 'package:eventpass_app/presentation/providers/router/auth/auth_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/event_organizer/event_organizer_routes.dart';
+import 'package:eventpass_app/presentation/providers/router/guard/auth_guard.dart';
 import 'package:eventpass_app/presentation/providers/router/participant/participant_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/receptionist/receptionist_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/superadmin/superadmin_routes.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router_provider.g.dart';
+
+const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+
+Future<bool> isAuthenticated() async {
+  final token = await secureStorage.read(key: 'token');
+  return token != null;
+}
 
 @Riverpod(keepAlive: true)
 Raw<GoRouter> router(RouterRef ref) => GoRouter(
@@ -36,26 +43,71 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
         GoRoute(
           path: '/success',
           name: 'success',
-          builder: (context, state) => const SuccessPage(),
+          builder: (context, state) {
+            final Map<String, dynamic> extra =
+                state.extra as Map<String, dynamic>;
+            final redirectTo = extra['redirectTo'] as String;
+            final message = extra['message'] as String?;
+            final buttonText = extra['buttonText'] as String;
+            return SuccessPage(
+              redirectTo: redirectTo,
+              buttonText: buttonText,
+              message: message,
+            );
+          },
         ),
         GoRoute(
           path: '/error',
           name: 'error',
-          builder: (context, state) => const ErrorPage(),
+          builder: (context, state) {
+            final Map<String, dynamic> extra =
+                state.extra as Map<String, dynamic>;
+            final isAttendance = extra['isAttendance'] as bool;
+            final message = extra['message'] as String?;
+            final redirectTo = extra['redirectTo'] as String;
+            return ErrorPage(
+              isAttendance: isAttendance,
+              message: message,
+              redirectTo: redirectTo,
+            );
+          },
         ),
         GoRoute(
           path: '/profile',
           name: 'profile',
-          builder: (context, state) => Scaffold(
-            appBar: AppBar(
-              title: const Text('Profile'),
-            ),
-            body: const Center(
-              child: Text('Profile'),
-            ),
-          ),
+          builder: (context, state) => const MainProfilePage(),
         ),
       ],
-      initialLocation: '/',
+      // redirect: (context, state) async {
+      //   // Periksa apakah pengguna sudah login dengan memeriksa token
+      //   final bool isLoggedIn = await AuthGuard.isAuthenticated();
+      //   final String? role = await AuthGuard.getRoleFromToken();
+
+      //   // Jika belum login dan mencoba mengakses halaman selain login atau welcome, arahkan ke login
+      //   final isLoggingIn = state.uri.path == '/login' || state.uri.path == '/';
+      //   if (!isLoggedIn && !isLoggingIn) {
+      //     return '/login';
+      //   }
+
+      //   // Jika sudah login, arahkan langsung ke dashboard
+      //   if (isLoggedIn && role != null) {
+      //     if (state.uri.path == '/') {
+      //       switch (role) {
+      //         case 'RECEPTIONIST':
+      //           return '/receptionist/dashboard';
+      //         case 'EVENT_ORGANIZER':
+      //           return '/event-organizer/dashboard';
+      //         case 'SUPERADMIN':
+      //           return '/superadmin/dashboard';
+      //         case 'PARTICIPANT':
+      //           return '/participant/dashboard';
+      //         default:
+      //           return '/'; // Jika role tidak dikenali
+      //       }
+      //     }
+      //   }
+
+      //   return null;
+      // },
       debugLogDiagnostics: true,
     );
