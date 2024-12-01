@@ -8,11 +8,9 @@ import 'package:eventpass_app/domain/entities/result/result.dart';
 import 'package:eventpass_app/domain/entities/user/user/user.dart';
 import 'package:eventpass_app/domain/repositories/attendance/attendance_repository.dart';
 import 'package:eventpass_app/infrastructure/config/api_config.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AttendanceRepositoryImplementation implements AttendanceRepository {
   final Dio? _dio;
-  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   AttendanceRepositoryImplementation({Dio? dio}) : _dio = dio ?? Dio();
 

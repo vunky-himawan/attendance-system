@@ -3,7 +3,7 @@ import 'package:eventpass_app/presentation/pages/receptionist/face_recognition/m
 import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image/image.dart' as img; // Tambahkan pustaka image
+import 'package:image/image.dart' as img;
 
 class FaceRecognitionPage extends ConsumerStatefulWidget {
   const FaceRecognitionPage({super.key});

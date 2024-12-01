@@ -1,8 +1,6 @@
-import 'package:eventpass_app/domain/entities/attendance/attendance.dart';
 import 'package:eventpass_app/domain/entities/enum/status_enum.dart';
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
-import 'package:eventpass_app/presentation/pages/receptionist/attendance_with_pin/main.dart';
 import 'package:eventpass_app/presentation/pages/receptionist/face_recognition/face_recognition_page.dart';
 import 'package:eventpass_app/presentation/pages/receptionist/home/methods/history_attendance_card.dart';
 import 'package:eventpass_app/presentation/providers/receptionist/attendance/attendance_data_provider.dart';
