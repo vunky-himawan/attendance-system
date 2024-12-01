@@ -59,9 +59,9 @@ class LoginPage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomTextField(
-                    labelText: 'Email',
+                    labelText: 'Username',
                     controller: _usernameController,
-                    hintText: 'Masukkan Email',
+                    hintText: 'Masukkan Username',
                   ),
                   verticalSpace(16),
                   CustomTextField(
@@ -80,9 +80,30 @@ class LoginPage extends ConsumerWidget {
                       ),
                     ),
                     onPressed: () {
-                      final username = _usernameController.text;
+                      final username = _usernameController.text.trim();
                       final password = _passwordController.text;
 
+                      // Validasi input
+                      final errorMessage =
+                          validateCredentials(username, password);
+                      if (errorMessage != null) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Error'),
+                            content: Text(errorMessage),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
+                        return;
+                      }
+
+                      // Jika validasi berhasil, panggil login
                       ref
                           .read(userDataProvider.notifier)
                           .login(username: username, password: password);
@@ -99,5 +120,16 @@ class LoginPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  /// Fungsi untuk memvalidasi username dan password
+  String? validateCredentials(String username, String password) {
+    if (username.isEmpty || username.length < 3) {
+      return 'Username harus minimal 3 karakter.';
+    }
+    if (password.isEmpty || password.length < 8) {
+      return 'Password harus minimal 8 karakter.';
+    }
+    return null; // Tidak ada error
   }
 }

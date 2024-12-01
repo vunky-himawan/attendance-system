@@ -1,6 +1,9 @@
+import 'package:eventpass_app/domain/entities/enum/status_enum.dart';
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
+import 'package:eventpass_app/presentation/pages/receptionist/face_recognition/face_recognition_page.dart';
 import 'package:eventpass_app/presentation/pages/receptionist/home/methods/history_attendance_card.dart';
+import 'package:eventpass_app/presentation/providers/receptionist/attendance/attendance_data_provider.dart';
 import 'package:eventpass_app/presentation/widgets/text/title.dart';
 import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +15,8 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final attendanceData = ref.watch(attendanceDataProvider);
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -26,7 +31,15 @@ class HomePage extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const FaceRecognitionPage(),
+                              ),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),
                             backgroundColor: blueWhite,
@@ -53,47 +66,47 @@ class HomePage extends ConsumerWidget {
                         ),
                       ),
                       horizontalSpace(8),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(double.infinity, 50),
-                            backgroundColor: orangeWhite,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(color: primaryOrange),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/choose.svg',
-                                colorFilter: const ColorFilter.mode(
-                                    primaryOrange, BlendMode.srcIn),
-                              ),
-                              horizontalSpace(8),
-                              const Text(
-                                'Absen PIN',
-                                style: TextStyle(color: primaryOrange),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                   verticalSpace(20),
                   title(context, ref, 'Riwayat'),
-                  verticalSpace(20),
-                  historyAttendanceCard(
-                      context, 'Absensi - Wajah', 'John Doe', 'Berhasil'),
-                  verticalSpace(8),
-                  historyAttendanceCard(
-                      context, 'Absensi - Wajah', 'John Doe', 'Gagal'),
-                  verticalSpace(8),
-                  historyAttendanceCard(
-                      context, 'Absensi - PIN', 'John Doe', 'Berhasil'),
+                  verticalSpace(10),
+                  if (attendanceData.isLoading)
+                    const Center(child: CircularProgressIndicator())
+                  else if (attendanceData.hasError)
+                    Center(child: Text(attendanceData.error!.toString()))
+                  else
+                    attendanceData.when(
+                      data: (_) {
+                        final attendances = ref
+                            .read(attendanceDataProvider.notifier)
+                            .attendances;
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: attendances.length,
+                          itemBuilder: (context, index) {
+                            final attendance = attendances[index];
+
+                            return historyAttendanceCard(
+                              context,
+                              attendance.attendedMethod.name,
+                              attendance.participant!.participantName,
+                              StatusEnum.values
+                                  .firstWhere((status) =>
+                                      status.name == attendance.status.name)
+                                  .name,
+                              attendance.participant!.gender,
+                            );
+                          },
+                        );
+                      },
+                      error: (error, stack) =>
+                          Center(child: Text(error.toString())),
+                      loading: () => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
                 ],
               ),
             )

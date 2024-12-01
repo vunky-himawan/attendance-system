@@ -1,6 +1,5 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
-import 'package:eventpass_app/presentation/pages/event_organizer/add_event/add_event_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/list_of_event/methods/event_card.dart';
 import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:eventpass_app/presentation/widgets/custom_search_bar.dart';

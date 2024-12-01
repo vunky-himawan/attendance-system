@@ -1,7 +1,6 @@
 import 'package:eventpass_app/presentation/pages/event_organizer/list_of_event/list_of_event_page.dart';
 import 'package:eventpass_app/presentation/pages/superadmin/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/superadmin/list_of_user/list_of_user_page.dart';
-import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
 import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';

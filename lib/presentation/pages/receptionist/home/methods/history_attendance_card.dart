@@ -3,9 +3,10 @@ import 'package:eventpass_app/presentation/misc/methods.dart';
 import 'package:eventpass_app/presentation/pages/receptionist/home/methods/label.dart';
 import 'package:flutter/material.dart';
 
-Widget historyAttendanceCard(
-    BuildContext context, String title, String name, String status) {
+Widget historyAttendanceCard(BuildContext context, String title, String name,
+    String status, String gender) {
   return Container(
+    margin: const EdgeInsets.only(top: 10),
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
       border: Border.all(
@@ -18,10 +19,12 @@ Widget historyAttendanceCard(
         Container(
           width: 64,
           height: 64,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
-              image: AssetImage("assets/example.jpg"),
+              image: AssetImage(gender == 'LAKI_LAKI'
+                  ? "assets/male.png"
+                  : "assets/female.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -33,9 +36,9 @@ Widget historyAttendanceCard(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                title,
+                'Absensi $title',
                 style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Text(name),
             ],

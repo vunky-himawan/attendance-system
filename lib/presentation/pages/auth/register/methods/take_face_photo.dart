@@ -65,7 +65,6 @@ class _TakeFacePhotoState extends ConsumerState<TakeFacePhoto> {
         });
         return;
       }
-      print("Photo taken: ${_capturedPhoto.path}");
 
       // Fix the image orientation
       final imageBytes = await _capturedPhoto.readAsBytes();
