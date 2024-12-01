@@ -20,13 +20,13 @@ Participant _$ParticipantFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Participant {
-  String get participant_name => throw _privateConstructorUsedError;
+  String get participantName => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
-  String get birth_date => throw _privateConstructorUsedError;
-  DateTime get created_at => throw _privateConstructorUsedError;
-  DateTime get updated_at => throw _privateConstructorUsedError;
-  String? get participant_id => throw _privateConstructorUsedError;
+  String get birthDate => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  String? get participantId => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
 
   /// Serializes this Participant to a JSON map.
@@ -46,13 +46,13 @@ abstract class $ParticipantCopyWith<$Res> {
       _$ParticipantCopyWithImpl<$Res, Participant>;
   @useResult
   $Res call(
-      {String participant_name,
+      {String participantName,
       int age,
       String gender,
-      String birth_date,
-      DateTime created_at,
-      DateTime updated_at,
-      String? participant_id,
+      String birthDate,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      String? participantId,
       int amount});
 }
 
@@ -71,19 +71,19 @@ class _$ParticipantCopyWithImpl<$Res, $Val extends Participant>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? participant_name = null,
+    Object? participantName = null,
     Object? age = null,
     Object? gender = null,
-    Object? birth_date = null,
-    Object? created_at = null,
-    Object? updated_at = null,
-    Object? participant_id = freezed,
+    Object? birthDate = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? participantId = freezed,
     Object? amount = null,
   }) {
     return _then(_value.copyWith(
-      participant_name: null == participant_name
-          ? _value.participant_name
-          : participant_name // ignore: cast_nullable_to_non_nullable
+      participantName: null == participantName
+          ? _value.participantName
+          : participantName // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -93,21 +93,21 @@ class _$ParticipantCopyWithImpl<$Res, $Val extends Participant>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      birth_date: null == birth_date
-          ? _value.birth_date
-          : birth_date // ignore: cast_nullable_to_non_nullable
+      birthDate: null == birthDate
+          ? _value.birthDate
+          : birthDate // ignore: cast_nullable_to_non_nullable
               as String,
-      created_at: null == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updated_at: null == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      participant_id: freezed == participant_id
-          ? _value.participant_id
-          : participant_id // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      participantId: freezed == participantId
+          ? _value.participantId
+          : participantId // ignore: cast_nullable_to_non_nullable
               as String?,
       amount: null == amount
           ? _value.amount
@@ -126,13 +126,13 @@ abstract class _$$ParticipantImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String participant_name,
+      {String participantName,
       int age,
       String gender,
-      String birth_date,
-      DateTime created_at,
-      DateTime updated_at,
-      String? participant_id,
+      String birthDate,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      String? participantId,
       int amount});
 }
 
@@ -149,19 +149,19 @@ class __$$ParticipantImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? participant_name = null,
+    Object? participantName = null,
     Object? age = null,
     Object? gender = null,
-    Object? birth_date = null,
-    Object? created_at = null,
-    Object? updated_at = null,
-    Object? participant_id = freezed,
+    Object? birthDate = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? participantId = freezed,
     Object? amount = null,
   }) {
     return _then(_$ParticipantImpl(
-      participant_name: null == participant_name
-          ? _value.participant_name
-          : participant_name // ignore: cast_nullable_to_non_nullable
+      participantName: null == participantName
+          ? _value.participantName
+          : participantName // ignore: cast_nullable_to_non_nullable
               as String,
       age: null == age
           ? _value.age
@@ -171,21 +171,21 @@ class __$$ParticipantImplCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      birth_date: null == birth_date
-          ? _value.birth_date
-          : birth_date // ignore: cast_nullable_to_non_nullable
+      birthDate: null == birthDate
+          ? _value.birthDate
+          : birthDate // ignore: cast_nullable_to_non_nullable
               as String,
-      created_at: null == created_at
-          ? _value.created_at
-          : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updated_at: null == updated_at
-          ? _value.updated_at
-          : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      participant_id: freezed == participant_id
-          ? _value.participant_id
-          : participant_id // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      participantId: freezed == participantId
+          ? _value.participantId
+          : participantId // ignore: cast_nullable_to_non_nullable
               as String?,
       amount: null == amount
           ? _value.amount
@@ -199,39 +199,39 @@ class __$$ParticipantImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ParticipantImpl implements _Participant {
   const _$ParticipantImpl(
-      {required this.participant_name,
+      {required this.participantName,
       required this.age,
       required this.gender,
-      required this.birth_date,
-      required this.created_at,
-      required this.updated_at,
-      this.participant_id,
+      required this.birthDate,
+      this.createdAt,
+      this.updatedAt,
+      this.participantId,
       this.amount = 0});
 
   factory _$ParticipantImpl.fromJson(Map<String, dynamic> json) =>
       _$$ParticipantImplFromJson(json);
 
   @override
-  final String participant_name;
+  final String participantName;
   @override
   final int age;
   @override
   final String gender;
   @override
-  final String birth_date;
+  final String birthDate;
   @override
-  final DateTime created_at;
+  final DateTime? createdAt;
   @override
-  final DateTime updated_at;
+  final DateTime? updatedAt;
   @override
-  final String? participant_id;
+  final String? participantId;
   @override
   @JsonKey()
   final int amount;
 
   @override
   String toString() {
-    return 'Participant(participant_name: $participant_name, age: $age, gender: $gender, birth_date: $birth_date, created_at: $created_at, updated_at: $updated_at, participant_id: $participant_id, amount: $amount)';
+    return 'Participant(participantName: $participantName, age: $age, gender: $gender, birthDate: $birthDate, createdAt: $createdAt, updatedAt: $updatedAt, participantId: $participantId, amount: $amount)';
   }
 
   @override
@@ -239,25 +239,25 @@ class _$ParticipantImpl implements _Participant {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ParticipantImpl &&
-            (identical(other.participant_name, participant_name) ||
-                other.participant_name == participant_name) &&
+            (identical(other.participantName, participantName) ||
+                other.participantName == participantName) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.birth_date, birth_date) ||
-                other.birth_date == birth_date) &&
-            (identical(other.created_at, created_at) ||
-                other.created_at == created_at) &&
-            (identical(other.updated_at, updated_at) ||
-                other.updated_at == updated_at) &&
-            (identical(other.participant_id, participant_id) ||
-                other.participant_id == participant_id) &&
+            (identical(other.birthDate, birthDate) ||
+                other.birthDate == birthDate) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            (identical(other.participantId, participantId) ||
+                other.participantId == participantId) &&
             (identical(other.amount, amount) || other.amount == amount));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, participant_name, age, gender,
-      birth_date, created_at, updated_at, participant_id, amount);
+  int get hashCode => Object.hash(runtimeType, participantName, age, gender,
+      birthDate, createdAt, updatedAt, participantId, amount);
 
   /// Create a copy of Participant
   /// with the given fields replaced by the non-null parameter values.
@@ -277,32 +277,32 @@ class _$ParticipantImpl implements _Participant {
 
 abstract class _Participant implements Participant {
   const factory _Participant(
-      {required final String participant_name,
+      {required final String participantName,
       required final int age,
       required final String gender,
-      required final String birth_date,
-      required final DateTime created_at,
-      required final DateTime updated_at,
-      final String? participant_id,
+      required final String birthDate,
+      final DateTime? createdAt,
+      final DateTime? updatedAt,
+      final String? participantId,
       final int amount}) = _$ParticipantImpl;
 
   factory _Participant.fromJson(Map<String, dynamic> json) =
       _$ParticipantImpl.fromJson;
 
   @override
-  String get participant_name;
+  String get participantName;
   @override
   int get age;
   @override
   String get gender;
   @override
-  String get birth_date;
+  String get birthDate;
   @override
-  DateTime get created_at;
+  DateTime? get createdAt;
   @override
-  DateTime get updated_at;
+  DateTime? get updatedAt;
   @override
-  String? get participant_id;
+  String? get participantId;
   @override
   int get amount;
 

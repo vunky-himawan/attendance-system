@@ -8,24 +8,28 @@ part of 'participant.dart';
 
 _$ParticipantImpl _$$ParticipantImplFromJson(Map<String, dynamic> json) =>
     _$ParticipantImpl(
-      participant_name: json['participant_name'] as String,
+      participantName: json['participantName'] as String,
       age: (json['age'] as num).toInt(),
       gender: json['gender'] as String,
-      birth_date: json['birth_date'] as String,
-      created_at: DateTime.parse(json['created_at'] as String),
-      updated_at: DateTime.parse(json['updated_at'] as String),
-      participant_id: json['participant_id'] as String?,
+      birthDate: json['birthDate'] as String,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+      participantId: json['participantId'] as String?,
       amount: (json['amount'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$ParticipantImplToJson(_$ParticipantImpl instance) =>
     <String, dynamic>{
-      'participant_name': instance.participant_name,
+      'participantName': instance.participantName,
       'age': instance.age,
       'gender': instance.gender,
-      'birth_date': instance.birth_date,
-      'created_at': instance.created_at.toIso8601String(),
-      'updated_at': instance.updated_at.toIso8601String(),
-      'participant_id': instance.participant_id,
+      'birthDate': instance.birthDate,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'participantId': instance.participantId,
       'amount': instance.amount,
     };
