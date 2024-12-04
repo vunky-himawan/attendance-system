@@ -21,18 +21,23 @@ class SpeakerCard extends StatelessWidget {
           color: Colors.grey.shade200,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Column(
+        child: Row(
           children: [
             CircleAvatar(
               backgroundImage: NetworkImage(imageUrl),
               radius: 32,
             ),
-            const SizedBox(height: 8),
-            Text(
-              name,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(role),
+              ],
             ),
-            Text(role),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
 
 class HeaderImage extends StatelessWidget {
   final String imageUrl;
@@ -15,11 +16,14 @@ class HeaderImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
+
+      fit: StackFit.passthrough,
       children: [
         Image.network(
           imageUrl,
           width: double.infinity,
-          height: 250,
+          height: 365,
           fit: BoxFit.cover,
         ),
         Positioned(
@@ -27,18 +31,25 @@ class HeaderImage extends StatelessWidget {
           left: 16,
           child: IconButton(
             onPressed: onBackPress,
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            icon: const HeroIcon(HeroIcons.arrowLeft, color: Colors.black, size: 20),
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(Colors.white),
+              shape: WidgetStateProperty.all(const CircleBorder()),
+            ),
           ),
         ),
         Positioned(
-          top: 16,
-          right: 16,
-          child: Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+          top: 20,
+          // left: 0,
+          // right: 0,
+          child: Center(
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
