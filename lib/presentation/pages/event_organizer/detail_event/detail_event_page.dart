@@ -1,205 +1,150 @@
+import 'package:eventpass_app/presentation/pages/event_organizer/detail_event/widget/header_image.dart';
+import 'package:eventpass_app/presentation/pages/event_organizer/detail_event/widget/speaker_card.dart';
+import 'package:eventpass_app/presentation/pages/event_organizer/detail_event/widget/statistic_item.dart';
+import 'package:eventpass_app/presentation/pages/event_organizer/detail_event/widget/tab_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DetailEventPage extends ConsumerWidget {
-  const DetailEventPage({Key? key}) : super(key: key);
+// Riverpod provider for selected tab index
+final selectedIndexProvider = StateProvider<int>((ref) => 0);
+
+void main() {
+  runApp(const ProviderScope(child: MyApp()));
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Event Detail',
+      home: DetailEventTabPage(),
+    );
+  }
+}
+
+class DetailEventTabPage extends ConsumerWidget {
+  const DetailEventTabPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedIndex = ref.watch(selectedIndexProvider);
+
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: const Text(
-          'Detail Acara',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Gambar Header Acara
-              Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      'https://images.pexels.com/photos/28271498/pexels-photo-28271498/free-photo-of-a-plant-in-front-of-a-white-wall.jpeg', // Ganti dengan URL gambar yang sesuai
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              // Header Image
+              HeaderImage(
+                imageUrl: 'https://via.placeholder.com/400x250',
+                title: 'Detail Acara',
+                onBackPress: () => Navigator.pop(context),
               ),
-              const SizedBox(height: 16),
 
-              // Tombol "Detail" dan "Statistika"
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0300A2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
-                    ),
-                    child: const Text('Detail'),
-                  ),
-                  const SizedBox(width: 8),
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF0300A2),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
-                    ),
-                    child: const Text('Statistika'),
-                  ),
-                ],
+              // Tab Navigation
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TabNavigation(
+                  selectedIndex: selectedIndex,
+                  onTabSelected: (index) => ref.read(selectedIndexProvider.notifier).state = index,
+                ),
               ),
-              const SizedBox(height: 16),
 
-              // Judul Acara dan Rating
-              const Text(
-                'Judul Judul Apa Gitu Nanti aja',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: const [
-                  Icon(Icons.star, color: Colors.orange),
-                  Icon(Icons.star, color: Colors.orange),
-                  Icon(Icons.star, color: Colors.orange),
-                  Icon(Icons.star, color: Colors.orange),
-                  Icon(Icons.star_half, color: Colors.orange),
-                  SizedBox(width: 8),
-                  Text('4/5 • (11,390)'),
-                ],
-              ),
-              const SizedBox(height: 16),
-
-              // Tentang Acara
-              const Text(
-                'Tentang',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Deskripsi apa saja lah nanti yakan',
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              // Pembicara
-              const Text(
-                'Pembicara',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(height: 16),
-              // Daftar Pembicara
-              Row(
-                children: [
-                  Expanded(
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 24,
-                              backgroundImage: NetworkImage(
-                                'https://example.com/image-url1.jpg', // Ganti dengan URL gambar pembicara
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Ina Kio',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                            const Text(
-                              'Copywriter',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 24,
-                              backgroundImage: NetworkImage(
-                                'https://example.com/image-url2.jpg', // Ganti dengan URL gambar pembicara
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Shaji',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                            const Text(
-                              'Designer',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Tab Content
+              selectedIndex == 0 ? _buildDetailSection() : _buildStatistikSection(),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Detail Section
+  Widget _buildDetailSection() {
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Judul Judul Apa Gitu Nanti Aja',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 8),
+          Row(
+            children: [
+              Icon(Icons.star, color: Colors.orange),
+              Icon(Icons.star, color: Colors.orange),
+              Icon(Icons.star, color: Colors.orange),
+              Icon(Icons.star, color: Colors.orange),
+              Icon(Icons.star_border, color: Colors.orange),
+              SizedBox(width: 8),
+              Text('4/5 • (11,390)'),
+            ],
+          ),
+          SizedBox(height: 16),
+          Text(
+            'Tentang',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 8),
+          Text('Deskripsi apa saja lah nanti yakan'),
+
+          SizedBox(height: 24),
+          Text(
+            'Pembicara',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 16),
+          Row(
+            children: [
+              SpeakerCard(
+                name: 'Ina Kio',
+                role: 'Copywriter',
+                imageUrl: 'https://via.placeholder.com/100',
+              ),
+              SizedBox(width: 16),
+              SpeakerCard(
+                name: 'Shaji',
+                role: 'Designer',
+                imageUrl: 'https://via.placeholder.com/100',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Statistik Section
+  Widget _buildStatistikSection() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const StatisticItem(title: 'Tiket Terjual', value: '400/400'),
+          const StatisticItem(title: 'Pengunjung', value: '400'),
+          const StatisticItem(title: 'Absensi Masuk', value: '400'),
+          const StatisticItem(title: 'Absensi Keluar', value: '400'),
+          const StatisticItem(title: 'Pendapatan', value: 'Rp. 30.000.000'),
+          const SizedBox(height: 24),
+          const Text(
+            'Kehadiran',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            height: 200,
+            color: Colors.grey.shade300, // Placeholder for chart
+            child: const Center(child: Text('Chart Placeholder')),
+          ),
+        ],
       ),
     );
   }
