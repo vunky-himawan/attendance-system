@@ -12,7 +12,8 @@ abstract interface class UserRepository {
     String? photo_url,
   });
 
-  Future<Result<User>> getUser({required String user_id});
+  Future<Result<User>> getUserByUserId({required String userId});
   Future<Result<User>> updateUser({required User user});
-  Future<Result<User>> uploadProfilePicture({required User user, required File imageFile});
+  Future<Result<User>> uploadProfilePicture(
+      {required User user, required File imageFile});
 }

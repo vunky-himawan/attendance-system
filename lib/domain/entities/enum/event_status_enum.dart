@@ -1,0 +1,1 @@
+enum EventStatusEnum { BUKA, TUTUP, BERLANGSUNG, SELESAI }

@@ -13,8 +13,12 @@ _$EventOrganizerImpl _$$EventOrganizerImplFromJson(Map<String, dynamic> json) =>
       organizationName: json['organizationName'] as String,
       address: json['address'] as String,
       description: json['description'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       eventOrganizerId: json['eventOrganizerId'] as String?,
       amount: (json['amount'] as num?)?.toInt() ?? 0,
     );
@@ -27,8 +31,8 @@ Map<String, dynamic> _$$EventOrganizerImplToJson(
       'organizationName': instance.organizationName,
       'address': instance.address,
       'description': instance.description,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       'eventOrganizerId': instance.eventOrganizerId,
       'amount': instance.amount,
     };

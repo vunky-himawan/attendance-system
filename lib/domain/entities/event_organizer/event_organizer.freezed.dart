@@ -25,8 +25,8 @@ mixin _$EventOrganizer {
   String get organizationName => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
   String? get eventOrganizerId => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
 
@@ -52,8 +52,8 @@ abstract class $EventOrganizerCopyWith<$Res> {
       String organizationName,
       String address,
       String description,
-      DateTime createdAt,
-      DateTime updatedAt,
+      DateTime? createdAt,
+      DateTime? updatedAt,
       String? eventOrganizerId,
       int amount});
 }
@@ -78,8 +78,8 @@ class _$EventOrganizerCopyWithImpl<$Res, $Val extends EventOrganizer>
     Object? organizationName = null,
     Object? address = null,
     Object? description = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? eventOrganizerId = freezed,
     Object? amount = null,
   }) {
@@ -104,14 +104,14 @@ class _$EventOrganizerCopyWithImpl<$Res, $Val extends EventOrganizer>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       eventOrganizerId: freezed == eventOrganizerId
           ? _value.eventOrganizerId
           : eventOrganizerId // ignore: cast_nullable_to_non_nullable
@@ -138,8 +138,8 @@ abstract class _$$EventOrganizerImplCopyWith<$Res>
       String organizationName,
       String address,
       String description,
-      DateTime createdAt,
-      DateTime updatedAt,
+      DateTime? createdAt,
+      DateTime? updatedAt,
       String? eventOrganizerId,
       int amount});
 }
@@ -162,8 +162,8 @@ class __$$EventOrganizerImplCopyWithImpl<$Res>
     Object? organizationName = null,
     Object? address = null,
     Object? description = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
     Object? eventOrganizerId = freezed,
     Object? amount = null,
   }) {
@@ -188,14 +188,14 @@ class __$$EventOrganizerImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       eventOrganizerId: freezed == eventOrganizerId
           ? _value.eventOrganizerId
           : eventOrganizerId // ignore: cast_nullable_to_non_nullable
@@ -217,8 +217,8 @@ class _$EventOrganizerImpl implements _EventOrganizer {
       required this.organizationName,
       required this.address,
       required this.description,
-      required this.createdAt,
-      required this.updatedAt,
+      this.createdAt,
+      this.updatedAt,
       this.eventOrganizerId,
       this.amount = 0});
 
@@ -236,9 +236,9 @@ class _$EventOrganizerImpl implements _EventOrganizer {
   @override
   final String description;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   @override
   final String? eventOrganizerId;
   @override
@@ -310,8 +310,8 @@ abstract class _EventOrganizer implements EventOrganizer {
       required final String organizationName,
       required final String address,
       required final String description,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      final DateTime? createdAt,
+      final DateTime? updatedAt,
       final String? eventOrganizerId,
       final int amount}) = _$EventOrganizerImpl;
 
@@ -329,9 +329,9 @@ abstract class _EventOrganizer implements EventOrganizer {
   @override
   String get description;
   @override
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
-  DateTime get updatedAt;
+  DateTime? get updatedAt;
   @override
   String? get eventOrganizerId;
   @override

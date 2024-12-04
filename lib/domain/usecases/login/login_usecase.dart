@@ -34,7 +34,6 @@ class LoginUsecase implements Usecase<Result<User>, LoginParams> {
         final User user = User(
           userId: subData['id'] as String,
           username: subData['username'] as String,
-          email: subData['email'] as String,
           role: subData['role'] as String,
         );
 

@@ -6,16 +6,16 @@ Widget label(BuildContext context, String status) {
     padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(
       border: Border.all(
-        color: status == 'Berhasil' ? primaryGreen : primaryRed,
+        color: status == 'BERHASIL' ? primaryGreen : primaryRed,
       ),
       borderRadius: BorderRadius.circular(8),
-      color: status == 'Berhasil' ? greenWhite : redWhite,
+      color: status == 'BERHASIL' ? greenWhite : redWhite,
     ),
     child: Text(
       status,
       style: TextStyle(
         fontSize: 12,
-        color: status == 'Berhasil' ? darkGreen : darkRed,
+        color: status == 'BERHASIL' ? darkGreen : darkRed,
       ),
     ),
   );

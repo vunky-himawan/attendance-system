@@ -5,7 +5,6 @@ import 'package:eventpass_app/presentation/pages/status/success_page.dart';
 import 'package:eventpass_app/presentation/pages/status/error_page.dart';
 import 'package:eventpass_app/presentation/providers/router/auth/auth_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/event_organizer/event_organizer_routes.dart';
-import 'package:eventpass_app/presentation/providers/router/guard/auth_guard.dart';
 import 'package:eventpass_app/presentation/providers/router/participant/participant_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/receptionist/receptionist_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/superadmin/superadmin_routes.dart';

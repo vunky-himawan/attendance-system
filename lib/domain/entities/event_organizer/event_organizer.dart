@@ -11,8 +11,8 @@ class EventOrganizer with _$EventOrganizer {
     required String organizationName,
     required String address,
     required String description,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    DateTime? createdAt,
+    DateTime? updatedAt,
     String? eventOrganizerId,
     @Default(0) int amount,
   }) = _EventOrganizer;

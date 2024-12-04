@@ -74,7 +74,6 @@ class UserData extends _$UserData {
           state = AsyncError(FlutterError(message), StackTrace.current);
       }
     } catch (e) {
-      print("ERROR DI USER DATA REGISTER: ${e.toString()}");
       state = AsyncError(FlutterError(e.toString()), StackTrace.current);
     }
   }
