@@ -9,8 +9,8 @@ class HeaderImage extends StatelessWidget {
     required this.imageUrl,
     required this.title,
     required this.onBackPress,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class HeaderImage extends StatelessWidget {
           left: 16,
           child: IconButton(
             onPressed: onBackPress,
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
           ),
         ),
         Positioned(
@@ -35,7 +35,7 @@ class HeaderImage extends StatelessWidget {
           right: 16,
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,
