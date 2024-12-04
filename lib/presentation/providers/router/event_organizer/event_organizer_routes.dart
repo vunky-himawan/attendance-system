@@ -6,6 +6,7 @@ import 'package:eventpass_app/presentation/pages/event_organizer/list_of_recepti
 import 'package:eventpass_app/presentation/pages/event_organizer/main_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/add_speaker/add_speaker_page.dart';
+import 'package:eventpass_app/presentation/pages/event_organizer/detail_event/detail_event_page.dart';
 import 'package:go_router/go_router.dart';
 
 List<GoRoute> eventOrganizerRoutes = [
@@ -51,6 +52,11 @@ List<GoRoute> eventOrganizerRoutes = [
         name: 'event_organizer_add_event',
         builder: (context, state) => const AddEventPage(),
       ),
+      GoRoute(
+        path: 'detail-event',
+        name: 'event_organizer_detail_event',
+        builder: (context, state) => const DetailEventTabPage(),
+      )
     ]
   ),
 ];
