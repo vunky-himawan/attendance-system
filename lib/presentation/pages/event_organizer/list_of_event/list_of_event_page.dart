@@ -85,6 +85,7 @@ class ListOfEventPage extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     final acara = acaraList[index];
                     return eventCard(
+                      ref: ref,
                       title: acara['judul']!,
                       date: acara['tanggal']!,
                       imageUrl: acara['image']!,
