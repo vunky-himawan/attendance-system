@@ -1,7 +1,9 @@
+import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 
-class HeaderImage extends StatelessWidget {
+class HeaderImage extends ConsumerWidget {
   final String imageUrl;
   final String title;
   final VoidCallback onBackPress;
@@ -14,7 +16,7 @@ class HeaderImage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       alignment: Alignment.center,
 
@@ -30,7 +32,7 @@ class HeaderImage extends StatelessWidget {
           top: 16,
           left: 16,
           child: IconButton(
-            onPressed: onBackPress,
+            onPressed: ref.watch(routerProvider).pop,
             icon: const HeroIcon(HeroIcons.arrowLeft, color: Colors.black, size: 20),
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.white),
