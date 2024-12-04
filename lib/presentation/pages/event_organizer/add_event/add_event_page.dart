@@ -18,6 +18,7 @@ class AddEventPage extends ConsumerStatefulWidget {
 
 class _AddEventPageState extends ConsumerState<AddEventPage> {
   File? _pickedImage;
+  // ignore: unused_field
   String? _selectedCategory; // State untuk kategori yang dipilih
   final TextEditingController eventNameController = TextEditingController();
   final TextEditingController eventDateController = TextEditingController();
