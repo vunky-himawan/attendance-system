@@ -29,4 +29,10 @@ final bookmarkProvider = StateProvider<List<BookmarkEvent>>((ref) => [
         date: 'Senin, 22 Sept 2024',
         imageUrl: 'https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg',
       ),
+      BookmarkEvent(
+        title: 'Design Thinking Workshop',
+        location: 'Online via Zoom',
+        date: 'Senin, 22 Sept 2024',
+        imageUrl: 'https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg',
+      ),
     ]);
