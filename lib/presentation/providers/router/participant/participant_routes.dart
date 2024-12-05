@@ -1,3 +1,4 @@
+import 'package:eventpass_app/presentation/pages/participant/bookmark/bookmark_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/checkout/checkout_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/main_page.dart';
@@ -14,6 +15,11 @@ List<GoRoute> participantRoutes = [
         path: 'home',
         name: 'participant_home',
         builder: (context, state) => HomePage(),
+      ),
+      GoRoute(
+        path: 'bookmark',
+        name: 'participant_bookmark',
+        builder: (context, state) => BookmarkPage(),
       ),
       GoRoute(
         path: 'checkout',
