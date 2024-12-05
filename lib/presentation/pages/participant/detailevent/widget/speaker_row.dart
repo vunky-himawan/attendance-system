@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 
 class SpeakerRow extends StatelessWidget {
-  final String imageUrl;
-  final String name;
-  final String role;
-
-  const SpeakerRow({
-    Key? key,
-    required this.imageUrl,
-    required this.name,
-    required this.role,
-  }) : super(key: key);
+  const SpeakerRow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(imageUrl),
+          backgroundImage: NetworkImage('https://via.placeholder.com/50'),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(name),
-            Text(role, style: const TextStyle(color: Colors.grey)),
+            Text("Ina Kio"),
+            Text("Copywriter", style: TextStyle(color: Colors.grey)),
+          ],
+        ),
+        SizedBox(width: 16),
+        CircleAvatar(
+          backgroundImage: NetworkImage('https://via.placeholder.com/50'),
+        ),
+        SizedBox(width: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Shaji"),
+            Text("Designer", style: TextStyle(color: Colors.grey)),
           ],
         ),
       ],

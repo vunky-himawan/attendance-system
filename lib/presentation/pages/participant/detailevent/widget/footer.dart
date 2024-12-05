@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
-  final String price;
+  final bool hasPurchasedTicket;
+  final VoidCallback onPurchase;
 
-  const Footer({Key? key, required this.price}) : super(key: key);
+  const Footer({
+    super.key,
+    required this.hasPurchasedTicket,
+    required this.onPurchase,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          price,
-          style: const TextStyle(
+        const Text(
+          "\$69,000",
+          style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
         ),
         ElevatedButton(
-          onPressed: () {
-            // Placeholder logic
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Fitur belum tersedia')),
-            );
-          },
-          child: const Text("Beli Sekarang"),
+          onPressed: hasPurchasedTicket ? null : onPurchase,
+          child: Text(hasPurchasedTicket ? "Dibeli" : "Beli Sekarang"),
         ),
       ],
     );
