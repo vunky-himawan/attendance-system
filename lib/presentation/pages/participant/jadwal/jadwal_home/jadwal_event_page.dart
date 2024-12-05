@@ -13,9 +13,8 @@ class JadwalPage extends ConsumerWidget {
     final eventList = ref.watch(eventListProvider);
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 80.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 110.0, 16.0, 80.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
