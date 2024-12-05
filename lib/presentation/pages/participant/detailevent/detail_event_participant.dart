@@ -1,3 +1,10 @@
+import 'package:eventpass_app/presentation/pages/participant/detailevent/widget/footer.dart';
+import 'package:eventpass_app/presentation/pages/participant/detailevent/widget/header_image.dart';
+import 'package:eventpass_app/presentation/pages/participant/detailevent/widget/info_row.dart';
+import 'package:eventpass_app/presentation/pages/participant/detailevent/widget/organizer_row.dart';
+import 'package:eventpass_app/presentation/pages/participant/detailevent/widget/rating_row.dart';
+import 'package:eventpass_app/presentation/pages/participant/detailevent/widget/section_title.dart';
+import 'package:eventpass_app/presentation/pages/participant/detailevent/widget/speaker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -65,138 +72,36 @@ class EventDetailPage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header Image
-            Stack(
-              children: [
-                Image.network(
-                  'https://via.placeholder.com/500x300',
-                  width: double.infinity,
-                  height: 250,
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
+            const HeaderImage (),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: const [
-                      Icon(Icons.calendar_today, color: Colors.grey),
-                      SizedBox(width: 8),
-                      Text("19 Sabtu, 06:00 PM - 12:00 AM"),
-                    ],
-                  ),
+                  const EventInformation(),
+                  const SizedBox(height: 8),
+                  const RatingRow(),
                   const SizedBox(height: 16),
-                  const Text(
-                    "Party for Big Startups Congratulations",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: const [
-                      Icon(Icons.location_on, color: Colors.grey),
-                      SizedBox(width: 8),
-                      Text("Auditorium Lantai 8 Gedung Sipil"),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: const [
-                      Icon(Icons.star, color: Colors.orange),
-                      Icon(Icons.star, color: Colors.orange),
-                      Icon(Icons.star, color: Colors.orange),
-                      Icon(Icons.star, color: Colors.orange),
-                      Icon(Icons.star_border, color: Colors.orange),
-                      SizedBox(width: 8),
-                      Text("4/5 (11,300)"),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    "Tentang",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  const SectionTitle(title: "Tentang"),
                   const SizedBox(height: 8),
                   const Text(
-                    "Pesta ini akan menjadi niat baik kami untuk menghubungkan para pendiri startup lainnya dan mengembangkan bisnis bersama juga sehingga negara kita menjadi lebih baik di masa depan.",
+                    "Pesta ini akan menjadi niat baik kami untuk menghubungkan para pendiri startup lainnya...",
                     style: TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    "Pembicara",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  const SectionTitle(title: "Pembicara"),
                   const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      const CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://via.placeholder.com/50'),
-                      ),
-                      const SizedBox(width: 8),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text("Ina Kio"),
-                          Text("Copywriter", style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-                      const CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://via.placeholder.com/50'),
-                      ),
-                      const SizedBox(width: 8),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text("Shaji"),
-                          Text("Designer", style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                    ],
-                  ),
+                  const SpeakerRow(),
                   const SizedBox(height: 16),
-                  const Text(
-                    "Diselenggarakan oleh",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  const SectionTitle(title: "Diselenggarakan oleh"),
                   const SizedBox(height: 8),
-                  Row(
-                    children: const [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://via.placeholder.com/50'),
-                      ),
-                      SizedBox(width: 8),
-                      Text("Ina Kio"),
-                    ],
-                  ),
+                  const OrganizerRow(),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "\$69,000",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: hasPurchasedTicket
-                            ? null
-                            : () {
-                                ref.read(ticketPurchaseProvider.notifier).purchaseTicket();
-                              },
-                        child: Text(
-                          hasPurchasedTicket ? "Dibeli" : "Beli Sekarang",
-                        ),
-                      ),
-                    ],
+                  Footer(
+                    hasPurchasedTicket: hasPurchasedTicket,
+                    onPurchase: () {
+                      ref.read(ticketPurchaseProvider.notifier).purchaseTicket();
+                    },
                   ),
                 ],
               ),
