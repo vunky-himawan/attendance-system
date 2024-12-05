@@ -1,4 +1,5 @@
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
+import 'package:eventpass_app/presentation/pages/participant/jadwal/jadwal_home/jadwal_event_page.dart' as jadwal_event_page;
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
 import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
@@ -32,7 +33,7 @@ class _MainPageState extends ConsumerState<MainPage> {
               ),
               children: [
                 HomePage(),
-                const Center(child: Text("Jadwal Page")),
+                jadwal_event_page.JadwalPage(),
                 const Center(child: Text("Bookmark Page")),
               ],
             ),
