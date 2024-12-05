@@ -1,3 +1,4 @@
+import 'package:eventpass_app/presentation/pages/participant/bookmark/bookmark_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
@@ -33,7 +34,7 @@ class _MainPageState extends ConsumerState<MainPage> {
               children: [
                 HomePage(),
                 const Center(child: Text("Jadwal Page")),
-                const Center(child: Text("Bookmark Page")),
+                BookmarkPage(),
               ],
             ),
             Align(
