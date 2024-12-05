@@ -1,5 +1,6 @@
 import 'package:eventpass_app/presentation/pages/participant/checkout/checkout_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
+import 'package:eventpass_app/presentation/pages/participant/detailevent/detail_event_participant.dart';
 import 'package:eventpass_app/presentation/pages/participant/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,6 +32,11 @@ List<GoRoute> participantRoutes = [
             child: Text('Top Up'),
           ),
         ),
+      ),
+      GoRoute(
+        path: 'detail-event',
+        name: 'participant_detail_event',
+        builder: (context, state) => EventDetailPage(),
       )
     ],
   ),
