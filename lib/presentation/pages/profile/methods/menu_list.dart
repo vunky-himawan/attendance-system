@@ -4,7 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 
+String getRoutePrefix(String role) {
+  switch (role) {
+    case 'PARTICIPANT':
+      return '/participant';
+    case 'EVENT_ORGANIZER':
+      return '/organizer';
+    case 'SUPERADMIN':
+      return '/admin';
+    case 'RECEPTIONIST':
+      return '/receptionist';
+    default:
+      return ''; // Jika tidak ada prefix
+  }
+}
+
 Widget menuList(BuildContext context, WidgetRef ref, String role) {
+  String prefix = getRoutePrefix(role);
+
   List<Map<String, dynamic>> menuList = [
     {
       'role': ['PARTICIPANT', 'EVENT_ORGANIZER', 'SUPERADMIN', 'RECEPTIONIST'],
@@ -19,7 +36,7 @@ Widget menuList(BuildContext context, WidgetRef ref, String role) {
     {
       'role': ['PARTICIPANT'],
       'menu': 'Riwayat',
-      'destination': '/history',
+      'destination': '$prefix/history',
     },
     {
       'role': ['EVENT_ORGANIZER', 'SUPERADMIN', 'RECEPTIONIST', 'PARTICIPANT'],
