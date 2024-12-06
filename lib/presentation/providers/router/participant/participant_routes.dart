@@ -1,4 +1,5 @@
 import 'package:eventpass_app/presentation/pages/participant/checkout/checkout_page.dart';
+import 'package:eventpass_app/presentation/pages/participant/history/history_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/main_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,11 @@ List<GoRoute> participantRoutes = [
         path: 'checkout',
         name: 'participant_checkout',
         builder: (context, state) => const CheckoutPage(),
+      ),
+      GoRoute(
+        path: 'history',
+        name: 'profile_history',
+        builder: (context, state) => HistoryPage(),
       ),
       GoRoute(
         path: 'top-up',
