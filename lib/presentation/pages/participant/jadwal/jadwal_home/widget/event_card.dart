@@ -2,6 +2,7 @@
 import 'package:eventpass_app/presentation/pages/participant/jadwal/detail_jadwal/detail_jadwal_event_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:heroicons/heroicons.dart';
 
 class EventCard extends ConsumerWidget {
   final String title;
@@ -69,11 +70,11 @@ class EventCard extends ConsumerWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      const Icon(Icons.location_on, color: Colors.grey, size: 16),
+                      const HeroIcon(HeroIcons.mapPin, color: Colors.black, size: 16),
                       const SizedBox(width: 4),
                       Text(
                         location,
-                        style: TextStyle(color: Colors.grey[600]),
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ],
                   ),
