@@ -1,6 +1,7 @@
 import 'package:eventpass_app/presentation/pages/participant/checkout/checkout_page.dart';
 import 'package:eventpass_app/presentation/pages/profile/profile-update/profile_update_page.dart';
 import 'package:eventpass_app/presentation/pages/profile/digital-tickets/digital_tickets_page.dart'; 
+import 'package:eventpass_app/presentation/pages/profile/change-password/change_password_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/main_page.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,11 @@ List<GoRoute> participantRoutes = [
         name: 'participant_profile_update',
         builder: (context, state) => const ProfileUpdatePage(),
       ),
+       GoRoute(
+          path: 'change-password',
+          name: 'participant_change_password',
+          builder: (context, state) => const ChangePasswordPage(),
+        ),
     ],
   ),
 ];
