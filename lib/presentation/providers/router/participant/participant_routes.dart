@@ -1,4 +1,5 @@
 import 'package:eventpass_app/presentation/pages/participant/checkout/checkout_page.dart';
+import 'package:eventpass_app/presentation/pages/profile/digital-tickets/digital_tickets_page.dart'; 
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/main_page.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,12 @@ List<GoRoute> participantRoutes = [
             child: Text('Top Up'),
           ),
         ),
-      )
+      ),
+      GoRoute(
+        path: 'digital-tickets',
+        name: 'participant_digital_tickets',
+        builder: (context, state) => DigitalTicketsPage(),
+      ),
     ],
   ),
 ];

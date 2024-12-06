@@ -8,6 +8,7 @@ import 'package:eventpass_app/presentation/providers/router/event_organizer/even
 import 'package:eventpass_app/presentation/providers/router/participant/participant_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/receptionist/receptionist_routes.dart';
 import 'package:eventpass_app/presentation/providers/router/superadmin/superadmin_routes.dart';
+import 'package:eventpass_app/presentation/pages/profile/digital-tickets/digital_tickets_page.dart'; 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -39,6 +40,11 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(
         ...receptionistRoutes,
         ...participantRoutes,
         ...authRoutes,
+        GoRoute(
+          path: '/digital-tickets',
+          name: 'digitalTickets',
+          builder: (context, state) => DigitalTicketsPage(),
+        ),
         GoRoute(
           path: '/success',
           name: 'success',
