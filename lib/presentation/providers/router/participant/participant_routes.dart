@@ -1,5 +1,7 @@
 import 'package:eventpass_app/presentation/pages/participant/checkout/checkout_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
+import 'package:eventpass_app/presentation/pages/participant/jadwal/detail_jadwal/detail_jadwal_event_page.dart';
+import 'package:eventpass_app/presentation/pages/participant/jadwal/jadwal_home/jadwal_event_page.dart' as jadwal_event_page;
 import 'package:eventpass_app/presentation/pages/participant/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +16,18 @@ List<GoRoute> participantRoutes = [
         path: 'home',
         name: 'participant_home',
         builder: (context, state) => HomePage(),
+      ),
+      GoRoute(
+        path: 'jadwal',
+        name: 'participant_jadwal',
+        builder: (context, state) => const jadwal_event_page.JadwalPage(),
+        routes: [
+          GoRoute(
+            path: 'detail-jadwal',
+            name: 'participant_detail-jadwal',
+            builder: (context, state) => const JadwalDetailPage(),
+          ),
+        ],
       ),
       GoRoute(
         path: 'checkout',
