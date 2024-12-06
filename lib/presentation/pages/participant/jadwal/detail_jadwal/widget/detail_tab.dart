@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:eventpass_app/presentation/pages/participant/jadwal/detail_jadwal/providers/detail_jadwal_provider.dart';
+import 'package:heroicons/heroicons.dart';
 
 class DetailTab extends StatelessWidget {
   final EventDetail event;
@@ -36,17 +37,17 @@ class DetailTab extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               event.title,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Row(
               children: [
-                const Icon(Icons.location_on, color: Colors.grey),
+                const HeroIcon(HeroIcons.mapPin, color: Colors.black),
                 const SizedBox(width: 8),
                 Text(event.location),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 24),
             Row(
               children: [
                 ...List.generate(
@@ -59,7 +60,17 @@ class DetailTab extends StatelessWidget {
                 Text("${event.rating}/5 (${event.ratingCount})"),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
+            const Text(
+              "Tentang",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              event.about,
+              style: const TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 24),
             const Text(
               "Tentang",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
