@@ -22,6 +22,11 @@ List<GoRoute> participantRoutes = [
         builder: (context, state) => const CheckoutPage(),
       ),
       GoRoute(
+        path: 'detail-event',
+        name: 'participant_detail_event',
+        builder: (context, state) => EventDetailPage(),
+      ),
+      GoRoute(
         path: 'top-up',
         name: 'participant_top-up',
         builder: (context, state) => Scaffold(
@@ -33,11 +38,6 @@ List<GoRoute> participantRoutes = [
           ),
         ),
       ),
-      GoRoute(
-        path: 'detail-event',
-        name: 'participant_detail_event',
-        builder: (context, state) => EventDetailPage(),
-      )
     ],
   ),
 ];
