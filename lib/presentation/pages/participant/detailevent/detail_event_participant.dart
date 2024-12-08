@@ -14,7 +14,8 @@ final favoriteProvider = StateNotifierProvider<FavoriteNotifier, bool>(
 );
 
 // Provider untuk mengelola pembelian tiket
-final ticketPurchaseProvider = StateNotifierProvider<TicketPurchaseNotifier, bool>(
+final ticketPurchaseProvider =
+    StateNotifierProvider<TicketPurchaseNotifier, bool>(
   (ref) => TicketPurchaseNotifier(),
 );
 
@@ -43,32 +44,58 @@ class EventDetailPage extends ConsumerWidget {
     final hasPurchasedTicket = ref.watch(ticketPurchaseProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          "Detail Acara",
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: Colors.black,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(120), // Tinggi total AppBar
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 16.0), // Tambahkan jarak dari atas dan kiri
+            child: CircleAvatar(
+              backgroundColor: Colors.white, // Lingkaran putih di kiri
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
             ),
-            onPressed: () {
-              ref.read(favoriteProvider.notifier).toggleFavorite();
-            },
           ),
-        ],
+          title: Padding(
+            padding:
+                const EdgeInsets.only(top: 16.0), // Tambahkan jarak dari atas
+            child: const Text(
+              "Detail Acara",
+              style: TextStyle(
+                color: Colors.white, // Warna teks putih
+                fontWeight: FontWeight.bold, // Teks bold
+              ),
+            ),
+          ),
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  right: 16.0,
+                  top: 16.0), // Tambahkan jarak dari atas dan kanan
+              child: CircleAvatar(
+                backgroundColor: Colors.white, // Lingkaran putih di kanan
+                child: IconButton(
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    ref.read(favoriteProvider.notifier).toggleFavorite();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
+
       extendBodyBehindAppBar: true,
       // floatingActionButton: Footer(
       //               hasPurchasedTicket: hasPurchasedTicket,
@@ -80,7 +107,7 @@ class EventDetailPage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const HeaderImage (),
+            const HeaderImage(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -108,7 +135,9 @@ class EventDetailPage extends ConsumerWidget {
                   Footer(
                     hasPurchasedTicket: hasPurchasedTicket,
                     onPurchase: () {
-                      ref.read(ticketPurchaseProvider.notifier).purchaseTicket();
+                      ref
+                          .read(ticketPurchaseProvider.notifier)
+                          .purchaseTicket();
                     },
                   ),
                 ],
