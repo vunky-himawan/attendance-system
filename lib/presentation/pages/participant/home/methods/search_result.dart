@@ -22,6 +22,7 @@ class SearchResultsWidget extends StatelessWidget {
                   size: 40,
                   color: Colors.black,
                 ),
+                SizedBox(height: 8),
                 Text(
                   "Tidak ada acara yang ditemukan.",
                   style: TextStyle(fontSize: 16, color: Colors.black),
