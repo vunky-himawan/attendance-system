@@ -35,6 +35,8 @@ class TicketPurchaseNotifier extends StateNotifier<bool> {
 }
 
 class EventDetailPage extends ConsumerWidget {
+  const EventDetailPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isFavorite = ref.watch(favoriteProvider);
@@ -68,6 +70,12 @@ class EventDetailPage extends ConsumerWidget {
         ],
       ),
       extendBodyBehindAppBar: true,
+      // floatingActionButton: Footer(
+      //               hasPurchasedTicket: hasPurchasedTicket,
+      //               onPurchase: () {
+      //                 ref.read(ticketPurchaseProvider.notifier).purchaseTicket();
+      //               },
+      //             ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,24 +87,24 @@ class EventDetailPage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const EventInformation(),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 20),
                   const RatingRow(),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   const SectionTitle(title: "Tentang"),
                   const SizedBox(height: 8),
                   const Text(
-                    "Pesta ini akan menjadi niat baik kami untuk menghubungkan para pendiri startup lainnya...",
+                    "Pesta ini akan menjadi niat baik kami untuk menghubungkan para pendiri startup lainnya dan mengembangkan bisnis bersama juga sehingga negara kita menjadi lebih baik di masa depan.",
                     style: TextStyle(color: Colors.grey),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   const SectionTitle(title: "Pembicara"),
                   const SizedBox(height: 8),
                   const SpeakerRow(),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   const SectionTitle(title: "Diselenggarakan oleh"),
                   const SizedBox(height: 8),
                   const OrganizerRow(),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   Footer(
                     hasPurchasedTicket: hasPurchasedTicket,
                     onPurchase: () {
