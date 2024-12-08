@@ -8,9 +8,9 @@ class HeaderImage extends StatelessWidget {
     return Stack(
       children: [
         Image.network(
-          'https://images.pexels.com/photos/2574643/pexels-photo-2574643.jpeg/500x300',
+          'https://images.pexels.com/photos/2574643/pexels-photo-2574643.jpeg',
           width: double.infinity,
-          height: 250,
+          height: 365,
           fit: BoxFit.cover,
         ),
       ],

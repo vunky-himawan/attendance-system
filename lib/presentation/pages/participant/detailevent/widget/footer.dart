@@ -20,12 +20,18 @@ class Footer extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.blue,
+            color: Colors.black,
           ),
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF0300A2), // Set your desired color here
+          ),
           onPressed: hasPurchasedTicket ? null : onPurchase,
-          child: Text(hasPurchasedTicket ? "Dibeli" : "Beli Sekarang"),
+          child: Text(
+            hasPurchasedTicket ? "Dibeli" : "Beli Sekarang",
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );

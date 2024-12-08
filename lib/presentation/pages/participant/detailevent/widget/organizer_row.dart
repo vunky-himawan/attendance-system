@@ -5,14 +5,33 @@ class OrganizerRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage('https://via.placeholder.com/50'),
-        ),
-        SizedBox(width: 8),
-        Text("Ina Kio"),
-      ],
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[100], // Warna latar belakang kartu
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: const Row(
+        children: [
+          // Gambar profil penyelenggara
+          CircleAvatar(
+            radius: 30, // Ukuran avatar
+            backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+          ),
+          SizedBox(width: 12),
+          // Nama penyelenggara
+          Expanded(
+            child: Text(
+              "Ina Kio",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
