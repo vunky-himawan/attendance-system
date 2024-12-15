@@ -1,6 +1,8 @@
 import 'package:eventpass_app/infrastructure/config/app_config.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
 import 'package:eventpass_app/presentation/pages/participant/event/detail/page.dart';
+import 'package:eventpass_app/presentation/pages/participant/home/methods/search_result.dart';
+import 'package:eventpass_app/presentation/pages/participant/home/methods/your_event_card.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/methods/recommendation_card.dart';
 import 'package:eventpass_app/presentation/providers/event_data/event_provider_setup.dart';
 import 'package:eventpass_app/presentation/widgets/custom_search_bar.dart';
