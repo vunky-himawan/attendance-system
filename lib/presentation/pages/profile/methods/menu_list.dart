@@ -1,5 +1,5 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
-import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
+import 'package:eventpass_app/presentation/pages/profile/wallets/wallet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
@@ -9,22 +9,22 @@ Widget menuList(BuildContext context, WidgetRef ref, String role) {
     {
       'role': ['PARTICIPANT', 'EVENT_ORGANIZER', 'SUPERADMIN', 'RECEPTIONIST'],
       'menu': 'Perbarui Profil',
-      'destination': '/profile-update',
+      'destination': Placeholder(),
     },
     {
       'role': ['PARTICIPANT', 'EVENT_ORGANIZER'],
       'menu': 'Dompet Digital',
-      'destination': '/digital-tickets',
+      'destination': WalletPage(),
     },
     {
       'role': ['PARTICIPANT'],
       'menu': 'Riwayat',
-      'destination': '/history',
+      'destination': Placeholder(),
     },
     {
       'role': ['EVENT_ORGANIZER', 'SUPERADMIN', 'RECEPTIONIST', 'PARTICIPANT'],
       'menu': 'Ubah Kata Sandi',
-      'destination': '/change-password',
+      'destination': Placeholder(),
     },
   ];
 
@@ -51,7 +51,10 @@ Widget menuList(BuildContext context, WidgetRef ref, String role) {
             ],
           ),
           onTap: () {
-            ref.read(routerProvider).push(menuItem['destination']);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => menuItem['destination']),
+            );
           },
         );
       }).toList(),

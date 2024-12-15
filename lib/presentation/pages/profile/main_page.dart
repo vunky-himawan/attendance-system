@@ -1,15 +1,20 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/pages/profile/methods/menu_list.dart';
 import 'package:eventpass_app/presentation/pages/profile/methods/profile_header.dart';
-import 'package:eventpass_app/presentation/providers/user_data/user_data_provider.dart';
+import 'package:eventpass_app/presentation/providers/auth/auth_provider_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainProfilePage extends ConsumerWidget {
-  const MainProfilePage({super.key});
+class ProfileMainPage extends ConsumerStatefulWidget {
+  const ProfileMainPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProfileMainPage> createState() => _ProfileMainPageState();
+}
+
+class _ProfileMainPageState extends ConsumerState<ProfileMainPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil'),
@@ -33,7 +38,7 @@ class MainProfilePage extends ConsumerWidget {
                   ),
                 ),
                 onPressed: () async {
-                  await ref.read(userDataProvider.notifier).logout();
+                  await ref.read(authProvider.notifier).logout();
                 },
                 child: const Text(
                   'Logout',

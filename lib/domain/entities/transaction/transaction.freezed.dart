@@ -21,7 +21,6 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Transaction {
   String get transactionId => throw _privateConstructorUsedError;
-  Participant get participant => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   TransactionCategoryEnum get category => throw _privateConstructorUsedError;
@@ -47,15 +46,12 @@ abstract class $TransactionCopyWith<$Res> {
   @useResult
   $Res call(
       {String transactionId,
-      Participant participant,
       String title,
       int amount,
       TransactionCategoryEnum category,
       StatusEnum status,
       DateTime? createdAt,
       DateTime? updatedAt});
-
-  $ParticipantCopyWith<$Res> get participant;
 }
 
 /// @nodoc
@@ -74,7 +70,6 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
   @override
   $Res call({
     Object? transactionId = null,
-    Object? participant = null,
     Object? title = null,
     Object? amount = null,
     Object? category = null,
@@ -87,10 +82,6 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
-      participant: null == participant
-          ? _value.participant
-          : participant // ignore: cast_nullable_to_non_nullable
-              as Participant,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -117,16 +108,6 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
               as DateTime?,
     ) as $Val);
   }
-
-  /// Create a copy of Transaction
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ParticipantCopyWith<$Res> get participant {
-    return $ParticipantCopyWith<$Res>(_value.participant, (value) {
-      return _then(_value.copyWith(participant: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -139,16 +120,12 @@ abstract class _$$TransactionImplCopyWith<$Res>
   @useResult
   $Res call(
       {String transactionId,
-      Participant participant,
       String title,
       int amount,
       TransactionCategoryEnum category,
       StatusEnum status,
       DateTime? createdAt,
       DateTime? updatedAt});
-
-  @override
-  $ParticipantCopyWith<$Res> get participant;
 }
 
 /// @nodoc
@@ -165,7 +142,6 @@ class __$$TransactionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transactionId = null,
-    Object? participant = null,
     Object? title = null,
     Object? amount = null,
     Object? category = null,
@@ -178,10 +154,6 @@ class __$$TransactionImplCopyWithImpl<$Res>
           ? _value.transactionId
           : transactionId // ignore: cast_nullable_to_non_nullable
               as String,
-      participant: null == participant
-          ? _value.participant
-          : participant // ignore: cast_nullable_to_non_nullable
-              as Participant,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -215,7 +187,6 @@ class __$$TransactionImplCopyWithImpl<$Res>
 class _$TransactionImpl implements _Transaction {
   const _$TransactionImpl(
       {required this.transactionId,
-      required this.participant,
       required this.title,
       required this.amount,
       required this.category,
@@ -228,8 +199,6 @@ class _$TransactionImpl implements _Transaction {
 
   @override
   final String transactionId;
-  @override
-  final Participant participant;
   @override
   final String title;
   @override
@@ -245,7 +214,7 @@ class _$TransactionImpl implements _Transaction {
 
   @override
   String toString() {
-    return 'Transaction(transactionId: $transactionId, participant: $participant, title: $title, amount: $amount, category: $category, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Transaction(transactionId: $transactionId, title: $title, amount: $amount, category: $category, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -255,8 +224,6 @@ class _$TransactionImpl implements _Transaction {
             other is _$TransactionImpl &&
             (identical(other.transactionId, transactionId) ||
                 other.transactionId == transactionId) &&
-            (identical(other.participant, participant) ||
-                other.participant == participant) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.category, category) ||
@@ -270,8 +237,8 @@ class _$TransactionImpl implements _Transaction {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, transactionId, participant,
-      title, amount, category, status, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, transactionId, title, amount,
+      category, status, createdAt, updatedAt);
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
@@ -292,7 +259,6 @@ class _$TransactionImpl implements _Transaction {
 abstract class _Transaction implements Transaction {
   const factory _Transaction(
       {required final String transactionId,
-      required final Participant participant,
       required final String title,
       required final int amount,
       required final TransactionCategoryEnum category,
@@ -305,8 +271,6 @@ abstract class _Transaction implements Transaction {
 
   @override
   String get transactionId;
-  @override
-  Participant get participant;
   @override
   String get title;
   @override

@@ -7,7 +7,7 @@ import 'package:eventpass_app/domain/entities/participant/participant.dart';
 import 'package:eventpass_app/domain/entities/result/result.dart';
 import 'package:eventpass_app/domain/entities/user/user/user.dart';
 import 'package:eventpass_app/domain/repositories/attendance/attendance_repository.dart';
-import 'package:eventpass_app/infrastructure/config/api_config.dart';
+import 'package:eventpass_app/infrastructure/config/app_config.dart';
 
 class AttendanceRepositoryImplementation implements AttendanceRepository {
   final Dio? _dio;
@@ -25,7 +25,7 @@ class AttendanceRepositoryImplementation implements AttendanceRepository {
       });
 
       final response = await _dio!.post(
-        "${ApiConfig.baseUrl}/attendance",
+        "${AppConfig.apiBaseUrl}/attendance",
         data: formData,
         options: Options(
           headers: {
@@ -69,7 +69,7 @@ class AttendanceRepositoryImplementation implements AttendanceRepository {
       String eventId, String receptionistId, String participantId) async {
     try {
       final response = await _dio!.post(
-        "${ApiConfig.baseUrl}/attendance/face/confirmation",
+        "${AppConfig.apiBaseUrl}/attendance/face/confirmation",
         data: {
           'is_correct': isCorrect,
           'event_id': eventId,
@@ -110,7 +110,7 @@ class AttendanceRepositoryImplementation implements AttendanceRepository {
       String pin, String receptionistId) async {
     try {
       final response = await _dio!.post(
-        "${ApiConfig.baseUrl}/attendance/pin/confirmation",
+        "${AppConfig.apiBaseUrl}/attendance/pin/confirmation",
         data: {
           'pin': pin,
           'receptionist_id': receptionistId,
@@ -146,13 +146,8 @@ class AttendanceRepositoryImplementation implements AttendanceRepository {
   Future<Result<List<Attendance>>> getAttendanceHistoryByReceptionist(
       String receptionistId) async {
     try {
-      print("GET ATTENDANCE HISTORY BY RECEPTIONIST" + receptionistId);
-
-      print(
-          '${ApiConfig.baseUrl}/attendance/history/$receptionistId?page=1&size=10');
-
       final response = await _dio!.get(
-        '${ApiConfig.baseUrl}/attendance/history/$receptionistId?page=1&size=10',
+        '${AppConfig.apiBaseUrl}/attendance/history/$receptionistId?page=1&size=10',
         options: Options(headers: {
           'Content-Type': 'application/json',
         }),
@@ -190,8 +185,13 @@ class AttendanceRepositoryImplementation implements AttendanceRepository {
 
       return Result.success(attendances);
     } on DioException catch (e) {
+      print("ERROR");
       print(e.message);
       return Result.failed('${e.message}');
+    } catch (e) {
+      print("ERROR");
+      print(e.toString());
+      return Result.failed('${e.toString()}');
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:eventpass_app/presentation/pages/event_organizer/home/home_page.dart';
-import 'package:eventpass_app/presentation/pages/event_organizer/list_of_event/list_of_event_page.dart';
 import 'package:eventpass_app/presentation/pages/event_organizer/list_of_receptionist/list_of_receptionist_page.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
@@ -8,14 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 
-class MainPage extends ConsumerStatefulWidget {
-  const MainPage({super.key});
+class EventOrganizerMainPage extends ConsumerStatefulWidget {
+  const EventOrganizerMainPage({super.key});
 
   @override
-  ConsumerState<MainPage> createState() => _MainPageState();
+  ConsumerState<EventOrganizerMainPage> createState() =>
+      _EventOrganizerMainPageState();
 }
 
-class _MainPageState extends ConsumerState<MainPage> {
+class _EventOrganizerMainPageState
+    extends ConsumerState<EventOrganizerMainPage> {
   PageController pageController = PageController();
   int selectedPage = 0;
 
@@ -34,7 +35,7 @@ class _MainPageState extends ConsumerState<MainPage> {
               ),
               children: [
                 const HomePage(),
-                ListOfEventPage(),
+                // ListOfEventPage(),
                 const ListOfReceptionistPage()
               ],
             ),

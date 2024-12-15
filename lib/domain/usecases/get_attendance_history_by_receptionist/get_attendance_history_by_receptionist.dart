@@ -17,7 +17,7 @@ class GetAttendanceHistoryByReceptionistUsecase
           await attendanceRepository.getAttendanceHistoryByReceptionist(params);
 
       if (result.isSuccess) {
-        return Result.success(result.resultValue!);
+        return Result.success(result.resultValue!.toList());
       }
 
       return Result.failed(result.errorMessage!);

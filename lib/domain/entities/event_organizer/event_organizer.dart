@@ -1,3 +1,4 @@
+import 'package:eventpass_app/domain/entities/speaker/speaker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'event_organizer.freezed.dart';

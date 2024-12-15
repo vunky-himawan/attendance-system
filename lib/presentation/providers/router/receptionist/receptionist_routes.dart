@@ -5,6 +5,6 @@ List<GoRoute> receptionistRoutes = [
   GoRoute(
     path: '/receptionist',
     name: 'receptionist',
-    builder: (context, state) => const HomePage(),
+    builder: (context, state) => const ReceptionistHomePage(),
   ),
 ];

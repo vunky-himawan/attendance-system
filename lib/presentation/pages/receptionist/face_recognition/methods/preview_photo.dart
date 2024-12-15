@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:eventpass_app/presentation/misc/colors.dart';
-import 'package:eventpass_app/presentation/providers/receptionist/attendance/attendance_data_provider.dart';
+import 'package:eventpass_app/presentation/pages/receptionist/face_recognition/face_recognition_page.dart';
+import 'package:eventpass_app/presentation/providers/attendance_data/attendance_provider_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
@@ -25,9 +26,11 @@ class _PreviewPhotoState extends ConsumerState<PreviewPhoto> {
     });
 
     try {
-      await ref
-          .read(attendanceDataProvider.notifier)
-          .attendance(context, widget.photo);
+      await ref.read(attendanceProvider.notifier).attendance(
+            ref: ref,
+            photo: widget.photo,
+            context: context,
+          );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -79,7 +82,12 @@ class _PreviewPhotoState extends ConsumerState<PreviewPhoto> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FaceRecognitionPage(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: 64,

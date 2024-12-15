@@ -9,8 +9,6 @@ part of 'transaction.dart';
 _$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
     _$TransactionImpl(
       transactionId: json['transactionId'] as String,
-      participant:
-          Participant.fromJson(json['participant'] as Map<String, dynamic>),
       title: json['title'] as String,
       amount: (json['amount'] as num).toInt(),
       category: $enumDecode(_$TransactionCategoryEnumEnumMap, json['category']),
@@ -26,7 +24,6 @@ _$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
     <String, dynamic>{
       'transactionId': instance.transactionId,
-      'participant': instance.participant,
       'title': instance.title,
       'amount': instance.amount,
       'category': _$TransactionCategoryEnumEnumMap[instance.category]!,

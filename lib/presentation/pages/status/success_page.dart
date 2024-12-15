@@ -80,9 +80,7 @@ class _SuccessPageState extends ConsumerState<SuccessPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: () {
-                    ref.watch(routerProvider).go(widget.redirectTo);
-                  },
+                  onPressed: () {},
                   child: Text(
                     widget.buttonText,
                     style: const TextStyle(color: Colors.white),

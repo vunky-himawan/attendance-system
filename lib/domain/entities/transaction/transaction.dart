@@ -1,6 +1,5 @@
 import 'package:eventpass_app/domain/entities/enum/status_enum.dart';
 import 'package:eventpass_app/domain/entities/enum/transaction_category_enum.dart';
-import 'package:eventpass_app/domain/entities/participant/participant.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction.freezed.dart';
@@ -10,7 +9,6 @@ part 'transaction.g.dart';
 class Transaction with _$Transaction {
   const factory Transaction({
     required String transactionId,
-    required Participant participant,
     required String title,
     required int amount,
     required TransactionCategoryEnum category,
