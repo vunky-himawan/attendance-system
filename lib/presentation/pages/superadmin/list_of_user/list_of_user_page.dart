@@ -2,7 +2,6 @@ import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
 import 'package:eventpass_app/presentation/pages/superadmin/list_of_user/methods/user_card.dart';
 import 'package:eventpass_app/presentation/widgets/custom_search_bar.dart';
-import 'package:eventpass_app/presentation/widgets/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

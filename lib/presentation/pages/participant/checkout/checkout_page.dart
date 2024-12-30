@@ -1,26 +1,69 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
 import 'package:eventpass_app/presentation/pages/participant/checkout/methods/checkout_card.dart';
-import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
+import 'package:eventpass_app/presentation/pages/profile/wallets/wallet_page.dart';
+import 'package:eventpass_app/presentation/providers/auth/auth_provider_setup.dart';
+import 'package:eventpass_app/presentation/providers/event_data/event_provider_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 
-class CheckoutPage extends ConsumerWidget {
-  const CheckoutPage({super.key});
+class CheckoutPage extends ConsumerStatefulWidget {
+  final String eventId;
+
+  const CheckoutPage({super.key, required this.eventId});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends ConsumerState<CheckoutPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Load event data after widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(eventProvider.notifier).getEvent(eventId: widget.eventId);
+      ref.read(authProvider.notifier).getParticipantDetails();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final eventState = ref.watch(eventProvider);
+    final authState = ref.watch(authProvider);
+
+    if (authState.isLoading) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else if (authState.participant == null) {
+      return const Center(
+        child: Text('Data tidak valid: Pengguna tidak memiliki informasi'),
+      );
+    }
+
+    final event = eventState.events
+        ?.firstWhere((element) => element.eventId == widget.eventId);
+
+    final participant = authState.participant!;
+
+    final balance = participant.amount;
+
+    final isBalanceSufficient = balance >= event!.ticketPrice;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
-        // Add the default back button using leading
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            ref.watch(routerProvider).pop();
+            Navigator.pop(context);
           },
         ),
         title: const Text(
@@ -56,12 +99,14 @@ class CheckoutPage extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             checkoutCard(
-              title: 'Party for Big Startups Congratulations',
-              date: 'Jumat, 20 Oktober 2024',
-              location: 'Graha Politeknik Negeri Malang',
-              price: 20000,
+              title: event!.title,
+              date: event.startDate.toString(),
+              location: event.address,
+              price: event.ticketPrice,
             ),
             verticalSpace(32),
+
+            // Balance Section
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -77,7 +122,13 @@ class CheckoutPage extends ConsumerWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        ref.watch(routerProvider).push('/participant/top-up');
+                        // Navigate to wallet page to add funds
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const WalletPage(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
@@ -99,12 +150,12 @@ class CheckoutPage extends ConsumerWidget {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
-                const Text(
-                  'Rp. 10000',
-                  style: TextStyle(
+                Text(
+                  'Rp. ${balance.toString()}',
+                  style: const TextStyle(
                     fontSize: 20,
                     color: ghost,
                   ),
@@ -112,27 +163,35 @@ class CheckoutPage extends ConsumerWidget {
               ],
             ),
             const Spacer(),
-            const Text(
-              'Saldo anda tidak cukup',
-              style: TextStyle(
-                color: primaryRed,
+
+            // Insufficient Balance Message
+            if (!isBalanceSufficient)
+              const Text(
+                'Saldo anda tidak cukup',
+                style: TextStyle(
+                  color: primaryRed,
+                ),
               ),
-            ),
             const SizedBox(height: 8),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: null,
+                onPressed: isBalanceSufficient
+                    ? () {
+                        ref.read(eventProvider.notifier).registrationEvent(
+                            eventId: event.eventId, ref: ref);
+                      }
+                    : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: darkBlue,
+                  backgroundColor:
+                      isBalanceSufficient ? darkBlue : ghost.withOpacity(0.2),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  disabledBackgroundColor: ghost.withOpacity(0.2),
                 ),
                 child: const Text(
                   'Bayar Sekarang',
-                  style: TextStyle(color: ghost), // Black text
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),

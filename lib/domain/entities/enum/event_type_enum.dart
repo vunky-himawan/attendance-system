@@ -1,0 +1,9 @@
+enum EventTypeEnum {
+  SEMINAR,
+  KONVERENSI,
+  WORKSHOP,
+  FESTIVAL,
+  LAINNYA,
+  EXPO,
+  KONVENSI
+}

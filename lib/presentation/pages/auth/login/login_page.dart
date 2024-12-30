@@ -1,15 +1,19 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
+import 'package:eventpass_app/presentation/providers/auth/auth_provider_setup.dart';
 import 'package:eventpass_app/presentation/widgets/input/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginPage extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
+class LoginPage extends ConsumerWidget {
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userState = ref.watch(authProvider);
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -41,14 +45,24 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
+              verticalSpace(10),
+              if (userState.error != null) ...[
+                const Center(
+                  child: Text(
+                    'Terjadi kesalahan',
+                    style: TextStyle(color: Colors.red),
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              ],
               verticalSpace(40),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomTextField(
-                    labelText: 'Email',
-                    controller: _emailController,
-                    hintText: 'Masukkan Email',
+                    labelText: 'Username',
+                    controller: _usernameController,
+                    hintText: 'Masukkan Username',
                   ),
                   verticalSpace(16),
                   CustomTextField(
@@ -66,7 +80,34 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      final username = _usernameController.text.trim();
+                      final password = _passwordController.text;
+
+                      final errorMessage =
+                          validateCredentials(username, password);
+                      if (errorMessage != null) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Error'),
+                            content: Text(errorMessage),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
+                        return;
+                      }
+
+                      ref.read(authProvider.notifier).login(
+                            username: username,
+                            password: password,
+                          );
+                    },
                     child: const Text(
                       'Masuk',
                       style: TextStyle(color: Colors.white),
@@ -79,5 +120,16 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Fungsi untuk memvalidasi username dan password
+  String? validateCredentials(String username, String password) {
+    if (username.isEmpty || username.length < 3) {
+      return 'Username harus minimal 3 karakter.';
+    }
+    if (password.isEmpty || password.length < 8) {
+      return 'Password harus minimal 8 karakter.';
+    }
+    return null; // Tidak ada error
   }
 }

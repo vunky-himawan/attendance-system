@@ -1,3 +1,4 @@
+import 'package:eventpass_app/infrastructure/config/app_config.dart';
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,7 @@ Widget youtEventCard(
     required String imagePath}) {
   return Container(
     padding: const EdgeInsets.all(13),
-    width: 210,
-    height: 250,
+    width: 310,
     decoration: BoxDecoration(
       border: Border.all(color: ghost.withOpacity(0.2)),
       color: Colors.white,
@@ -21,8 +21,8 @@ Widget youtEventCard(
         // Gambar dengan sudut melengkung
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.asset(
-            imagePath,
+          child: Image.network(
+            '${AppConfig.assetBaseUrl}/$imagePath',
             fit: BoxFit.cover,
             width: double.infinity,
             height: 125,

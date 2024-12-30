@@ -101,6 +101,7 @@ class AddReceptionistEventPage extends ConsumerWidget {
                   },
                 ),
               ),
+              
               // Next Button
               Container(
                 width: double.infinity,

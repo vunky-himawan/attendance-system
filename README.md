@@ -3,8 +3,7 @@
 ### Ahmad Aria
 
 - Profile Semua Aktor
-- History
-- My Wallet
+- Backend
 
 ### Haiday Aly
 
@@ -13,6 +12,7 @@
 - Search
 - CRUD Event Admin
 - Bookmark
+- History
 
 ### Vunky Himawan
 
@@ -29,3 +29,4 @@
 - Checkout
 - Tambah Speaker & Resepsionis
 - Menu Pengguna Super Admin
+- My Wallet

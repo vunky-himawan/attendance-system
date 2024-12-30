@@ -1,0 +1,1 @@
+enum AttendanceMethodEnum { WAJAH, PIN }
