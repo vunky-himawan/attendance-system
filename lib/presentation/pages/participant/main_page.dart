@@ -1,4 +1,8 @@
+import 'package:eventpass_app/presentation/pages/participant/bookmark/bookmark_page.dart';
 import 'package:eventpass_app/presentation/pages/participant/home/home_page.dart';
+import 'package:eventpass_app/presentation/pages/participant/jadwal/jadwal_event_page.dart';
+import 'package:eventpass_app/presentation/providers/event_data/event_provider_setup.dart';
+import 'package:eventpass_app/presentation/providers/schedule_data/schedule_provider_setup.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar.dart';
 import 'package:eventpass_app/presentation/widgets/bottom_nav_bar_item.dart';
 import 'package:eventpass_app/presentation/widgets/user_info/user_info.dart';
@@ -6,16 +10,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 
-class MainPage extends ConsumerStatefulWidget {
-  const MainPage({super.key});
+class ParticipantMainPage extends ConsumerStatefulWidget {
+  const ParticipantMainPage({super.key});
 
   @override
-  ConsumerState<MainPage> createState() => _MainPageState();
+  ConsumerState<ParticipantMainPage> createState() =>
+      _ParticipantMainPageState();
 }
 
-class _MainPageState extends ConsumerState<MainPage> {
+class _ParticipantMainPageState extends ConsumerState<ParticipantMainPage> {
   PageController pageController = PageController();
   int selectedPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(eventProvider.notifier).getEvents(page: '1', size: '10');
+      ref.read(scheduleProvider.notifier).getSchedule();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +44,10 @@ class _MainPageState extends ConsumerState<MainPage> {
                   selectedPage = value;
                 },
               ),
-              children: [
-                HomePage(),
-                const Center(child: Text("Jadwal Page")),
-                const Center(child: Text("Bookmark Page")),
+              children: const [
+                ParticipantHomePage(),
+                JadwalPage(),
+                BookmarkPage(),
               ],
             ),
             Align(

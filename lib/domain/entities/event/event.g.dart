@@ -8,8 +8,10 @@ part of 'event.dart';
 
 _$EventImpl _$$EventImplFromJson(Map<String, dynamic> json) => _$EventImpl(
       eventId: json['eventId'] as String,
-      eventOrganizer: EventOrganizer.fromJson(
-          json['eventOrganizer'] as Map<String, dynamic>),
+      eventOrganizer: json['eventOrganizer'] == null
+          ? null
+          : EventOrganizer.fromJson(
+              json['eventOrganizer'] as Map<String, dynamic>),
       thumbnailPath: json['thumbnailPath'] as String,
       title: json['title'] as String,
       address: json['address'] as String,
@@ -19,6 +21,9 @@ _$EventImpl _$$EventImplFromJson(Map<String, dynamic> json) => _$EventImpl(
       ticketPrice: (json['ticketPrice'] as num).toInt(),
       ticketQuantity: (json['ticketQuantity'] as num).toInt(),
       startDate: DateTime.parse(json['startDate'] as String),
+      speakers: (json['speakers'] as List<dynamic>?)
+          ?.map((e) => Speaker.fromJson(e as Map<String, dynamic>))
+          .toList(),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -40,13 +45,14 @@ Map<String, dynamic> _$$EventImplToJson(_$EventImpl instance) =>
       'ticketPrice': instance.ticketPrice,
       'ticketQuantity': instance.ticketQuantity,
       'startDate': instance.startDate.toIso8601String(),
+      'speakers': instance.speakers,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
     };
 
 const _$EventTypeEnumEnumMap = {
   EventTypeEnum.SEMINAR: 'SEMINAR',
-  EventTypeEnum.KONFERENSI: 'KONFERENSI',
+  EventTypeEnum.KONVERENSI: 'KONVERENSI',
   EventTypeEnum.WORKSHOP: 'WORKSHOP',
   EventTypeEnum.FESTIVAL: 'FESTIVAL',
   EventTypeEnum.LAINNYA: 'LAINNYA',

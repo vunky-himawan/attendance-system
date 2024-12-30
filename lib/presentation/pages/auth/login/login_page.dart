@@ -1,6 +1,6 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
-import 'package:eventpass_app/presentation/providers/user_data/user_data_provider.dart';
+import 'package:eventpass_app/presentation/providers/auth/auth_provider_setup.dart';
 import 'package:eventpass_app/presentation/widgets/input/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +12,7 @@ class LoginPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userState = ref.watch(userDataProvider);
+    final userState = ref.watch(authProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -46,13 +46,14 @@ class LoginPage extends ConsumerWidget {
                 ],
               ),
               verticalSpace(10),
-              if (userState.hasError) ...[
-                Center(
+              if (userState.error != null) ...[
+                const Center(
                   child: Text(
-                    userState.error!.toString(),
-                    style: const TextStyle(color: Colors.red),
+                    'Terjadi kesalahan',
+                    style: TextStyle(color: Colors.red),
+                    textAlign: TextAlign.center,
                   ),
-                ),
+                )
               ],
               verticalSpace(40),
               Column(
@@ -83,7 +84,6 @@ class LoginPage extends ConsumerWidget {
                       final username = _usernameController.text.trim();
                       final password = _passwordController.text;
 
-                      // Validasi input
                       final errorMessage =
                           validateCredentials(username, password);
                       if (errorMessage != null) {
@@ -103,10 +103,10 @@ class LoginPage extends ConsumerWidget {
                         return;
                       }
 
-                      // Jika validasi berhasil, panggil login
-                      ref
-                          .read(userDataProvider.notifier)
-                          .login(username: username, password: password);
+                      ref.read(authProvider.notifier).login(
+                            username: username,
+                            password: password,
+                          );
                     },
                     child: const Text(
                       'Masuk',

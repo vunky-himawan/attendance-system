@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
+import 'package:eventpass_app/presentation/providers/auth/auth_provider_setup.dart';
 import 'package:eventpass_app/presentation/providers/router/router_provider.dart';
-import 'package:eventpass_app/presentation/providers/user_data/user_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:eventpass_app/presentation/providers/usecases/register/notifier/register_notifier.dart';
@@ -52,26 +52,22 @@ class _TakeFacePhotoState extends ConsumerState<TakeFacePhoto> {
     if (!_isCameraInitialized) return;
 
     setState(() {
-      _isLoading = true; // Tampilkan indikator loading
+      _isLoading = true;
     });
 
     try {
-      // Take the photo
       _capturedPhoto = await _cameraController.takePicture();
       if (_capturedPhoto == null) {
         print("Error: Captured photo is null");
         setState(() {
-          _isLoading = false; // Sembunyikan indikator loading
+          _isLoading = false;
         });
         return;
       }
-
-      // Fix the image orientation
       final imageBytes = await _capturedPhoto.readAsBytes();
       final originalImage = img.decodeImage(imageBytes);
       final orientedImage = img.bakeOrientation(originalImage!);
 
-      // Save the oriented image to a file
       final orientedImagePath =
           _capturedPhoto.path.replaceFirst('.jpg', '_oriented.jpg');
       final orientedImageBytes = img.encodeJpg(orientedImage);
@@ -83,10 +79,8 @@ class _TakeFacePhotoState extends ConsumerState<TakeFacePhoto> {
       );
       await orientedImageFile.saveTo(orientedImagePath);
 
-      // Get the current state ONCE using read
       final registerState = ref.read(registerProvider);
 
-      // Check if we have the required registration data
       final username = registerState.username;
       final password = registerState.password;
       final email = registerState.email;
@@ -96,18 +90,15 @@ class _TakeFacePhotoState extends ConsumerState<TakeFacePhoto> {
           password == null ||
           email == null ||
           selectedRole == null) {
-        print("Error: Missing required registration fields");
         setState(() {
-          _isLoading = false; // Sembunyikan indikator loading
+          _isLoading = false;
         });
         return;
       }
 
-      // Get the updated state after setting participant info
       final updatedState = ref.read(registerProvider);
 
-      // Perform registration with the updated state
-      await ref.read(userDataProvider.notifier).register(
+      await ref.read(authProvider.notifier).register(
             username: username,
             password: password,
             email: email,
@@ -119,7 +110,7 @@ class _TakeFacePhotoState extends ConsumerState<TakeFacePhoto> {
       ref.watch(routerProvider).push('/error');
     } finally {
       setState(() {
-        _isLoading = false; // Sembunyikan indikator loading
+        _isLoading = false;
       });
     }
   }

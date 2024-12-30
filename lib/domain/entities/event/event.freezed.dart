@@ -21,7 +21,7 @@ Event _$EventFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Event {
   String get eventId => throw _privateConstructorUsedError;
-  EventOrganizer get eventOrganizer => throw _privateConstructorUsedError;
+  EventOrganizer? get eventOrganizer => throw _privateConstructorUsedError;
   String get thumbnailPath => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
@@ -31,6 +31,7 @@ mixin _$Event {
   int get ticketPrice => throw _privateConstructorUsedError;
   int get ticketQuantity => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
+  List<Speaker>? get speakers => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -50,7 +51,7 @@ abstract class $EventCopyWith<$Res> {
   @useResult
   $Res call(
       {String eventId,
-      EventOrganizer eventOrganizer,
+      EventOrganizer? eventOrganizer,
       String thumbnailPath,
       String title,
       String address,
@@ -60,10 +61,11 @@ abstract class $EventCopyWith<$Res> {
       int ticketPrice,
       int ticketQuantity,
       DateTime startDate,
+      List<Speaker>? speakers,
       DateTime? createdAt,
       DateTime? updatedAt});
 
-  $EventOrganizerCopyWith<$Res> get eventOrganizer;
+  $EventOrganizerCopyWith<$Res>? get eventOrganizer;
 }
 
 /// @nodoc
@@ -82,7 +84,7 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
   @override
   $Res call({
     Object? eventId = null,
-    Object? eventOrganizer = null,
+    Object? eventOrganizer = freezed,
     Object? thumbnailPath = null,
     Object? title = null,
     Object? address = null,
@@ -92,6 +94,7 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
     Object? ticketPrice = null,
     Object? ticketQuantity = null,
     Object? startDate = null,
+    Object? speakers = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -100,10 +103,10 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
           ? _value.eventId
           : eventId // ignore: cast_nullable_to_non_nullable
               as String,
-      eventOrganizer: null == eventOrganizer
+      eventOrganizer: freezed == eventOrganizer
           ? _value.eventOrganizer
           : eventOrganizer // ignore: cast_nullable_to_non_nullable
-              as EventOrganizer,
+              as EventOrganizer?,
       thumbnailPath: null == thumbnailPath
           ? _value.thumbnailPath
           : thumbnailPath // ignore: cast_nullable_to_non_nullable
@@ -140,6 +143,10 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      speakers: freezed == speakers
+          ? _value.speakers
+          : speakers // ignore: cast_nullable_to_non_nullable
+              as List<Speaker>?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -155,8 +162,12 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $EventOrganizerCopyWith<$Res> get eventOrganizer {
-    return $EventOrganizerCopyWith<$Res>(_value.eventOrganizer, (value) {
+  $EventOrganizerCopyWith<$Res>? get eventOrganizer {
+    if (_value.eventOrganizer == null) {
+      return null;
+    }
+
+    return $EventOrganizerCopyWith<$Res>(_value.eventOrganizer!, (value) {
       return _then(_value.copyWith(eventOrganizer: value) as $Val);
     });
   }
@@ -171,7 +182,7 @@ abstract class _$$EventImplCopyWith<$Res> implements $EventCopyWith<$Res> {
   @useResult
   $Res call(
       {String eventId,
-      EventOrganizer eventOrganizer,
+      EventOrganizer? eventOrganizer,
       String thumbnailPath,
       String title,
       String address,
@@ -181,11 +192,12 @@ abstract class _$$EventImplCopyWith<$Res> implements $EventCopyWith<$Res> {
       int ticketPrice,
       int ticketQuantity,
       DateTime startDate,
+      List<Speaker>? speakers,
       DateTime? createdAt,
       DateTime? updatedAt});
 
   @override
-  $EventOrganizerCopyWith<$Res> get eventOrganizer;
+  $EventOrganizerCopyWith<$Res>? get eventOrganizer;
 }
 
 /// @nodoc
@@ -202,7 +214,7 @@ class __$$EventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? eventId = null,
-    Object? eventOrganizer = null,
+    Object? eventOrganizer = freezed,
     Object? thumbnailPath = null,
     Object? title = null,
     Object? address = null,
@@ -212,6 +224,7 @@ class __$$EventImplCopyWithImpl<$Res>
     Object? ticketPrice = null,
     Object? ticketQuantity = null,
     Object? startDate = null,
+    Object? speakers = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -220,10 +233,10 @@ class __$$EventImplCopyWithImpl<$Res>
           ? _value.eventId
           : eventId // ignore: cast_nullable_to_non_nullable
               as String,
-      eventOrganizer: null == eventOrganizer
+      eventOrganizer: freezed == eventOrganizer
           ? _value.eventOrganizer
           : eventOrganizer // ignore: cast_nullable_to_non_nullable
-              as EventOrganizer,
+              as EventOrganizer?,
       thumbnailPath: null == thumbnailPath
           ? _value.thumbnailPath
           : thumbnailPath // ignore: cast_nullable_to_non_nullable
@@ -260,6 +273,10 @@ class __$$EventImplCopyWithImpl<$Res>
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      speakers: freezed == speakers
+          ? _value._speakers
+          : speakers // ignore: cast_nullable_to_non_nullable
+              as List<Speaker>?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -277,7 +294,7 @@ class __$$EventImplCopyWithImpl<$Res>
 class _$EventImpl implements _Event {
   const _$EventImpl(
       {required this.eventId,
-      required this.eventOrganizer,
+      this.eventOrganizer,
       required this.thumbnailPath,
       required this.title,
       required this.address,
@@ -287,8 +304,10 @@ class _$EventImpl implements _Event {
       required this.ticketPrice,
       required this.ticketQuantity,
       required this.startDate,
+      final List<Speaker>? speakers,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt})
+      : _speakers = speakers;
 
   factory _$EventImpl.fromJson(Map<String, dynamic> json) =>
       _$$EventImplFromJson(json);
@@ -296,7 +315,7 @@ class _$EventImpl implements _Event {
   @override
   final String eventId;
   @override
-  final EventOrganizer eventOrganizer;
+  final EventOrganizer? eventOrganizer;
   @override
   final String thumbnailPath;
   @override
@@ -315,6 +334,16 @@ class _$EventImpl implements _Event {
   final int ticketQuantity;
   @override
   final DateTime startDate;
+  final List<Speaker>? _speakers;
+  @override
+  List<Speaker>? get speakers {
+    final value = _speakers;
+    if (value == null) return null;
+    if (_speakers is EqualUnmodifiableListView) return _speakers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final DateTime? createdAt;
   @override
@@ -322,7 +351,7 @@ class _$EventImpl implements _Event {
 
   @override
   String toString() {
-    return 'Event(eventId: $eventId, eventOrganizer: $eventOrganizer, thumbnailPath: $thumbnailPath, title: $title, address: $address, description: $description, type: $type, status: $status, ticketPrice: $ticketPrice, ticketQuantity: $ticketQuantity, startDate: $startDate, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Event(eventId: $eventId, eventOrganizer: $eventOrganizer, thumbnailPath: $thumbnailPath, title: $title, address: $address, description: $description, type: $type, status: $status, ticketPrice: $ticketPrice, ticketQuantity: $ticketQuantity, startDate: $startDate, speakers: $speakers, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -347,6 +376,7 @@ class _$EventImpl implements _Event {
                 other.ticketQuantity == ticketQuantity) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
+            const DeepCollectionEquality().equals(other._speakers, _speakers) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -368,6 +398,7 @@ class _$EventImpl implements _Event {
       ticketPrice,
       ticketQuantity,
       startDate,
+      const DeepCollectionEquality().hash(_speakers),
       createdAt,
       updatedAt);
 
@@ -390,7 +421,7 @@ class _$EventImpl implements _Event {
 abstract class _Event implements Event {
   const factory _Event(
       {required final String eventId,
-      required final EventOrganizer eventOrganizer,
+      final EventOrganizer? eventOrganizer,
       required final String thumbnailPath,
       required final String title,
       required final String address,
@@ -400,6 +431,7 @@ abstract class _Event implements Event {
       required final int ticketPrice,
       required final int ticketQuantity,
       required final DateTime startDate,
+      final List<Speaker>? speakers,
       final DateTime? createdAt,
       final DateTime? updatedAt}) = _$EventImpl;
 
@@ -408,7 +440,7 @@ abstract class _Event implements Event {
   @override
   String get eventId;
   @override
-  EventOrganizer get eventOrganizer;
+  EventOrganizer? get eventOrganizer;
   @override
   String get thumbnailPath;
   @override
@@ -427,6 +459,8 @@ abstract class _Event implements Event {
   int get ticketQuantity;
   @override
   DateTime get startDate;
+  @override
+  List<Speaker>? get speakers;
   @override
   DateTime? get createdAt;
   @override

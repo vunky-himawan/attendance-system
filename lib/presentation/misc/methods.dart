@@ -18,3 +18,4 @@ SizedBox horizontalSpace(double width) {
 
   return _horizontalSpaces[width]!;
 }
+

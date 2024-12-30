@@ -1,7 +1,7 @@
 import 'package:eventpass_app/presentation/misc/colors.dart';
 import 'package:eventpass_app/presentation/misc/methods.dart';
+import 'package:eventpass_app/presentation/providers/auth/auth_provider_setup.dart';
 import 'package:eventpass_app/presentation/providers/usecases/register/notifier/register_notifier.dart';
-import 'package:eventpass_app/presentation/providers/user_data/user_data_provider.dart';
 import 'package:eventpass_app/presentation/widgets/input/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,7 +62,7 @@ class _AccountInfoState extends ConsumerState<AccountInfo> {
       if (widget.isLastStep) {
         final registerState = ref.read(registerProvider);
 
-        await ref.read(userDataProvider.notifier).register(
+        await ref.read(authProvider.notifier).register(
               username: _usernameController.text,
               password: _passwordController.text,
               email: _emailController.text,

@@ -4,50 +4,22 @@ import 'package:camera/camera.dart';
 import 'package:dio/dio.dart';
 import 'package:eventpass_app/domain/entities/result/result.dart';
 import 'package:eventpass_app/domain/entities/token/token.dart';
-import 'package:eventpass_app/domain/entities/user/user/user.dart';
 import 'package:eventpass_app/domain/repositories/authentication/authentication_repository.dart';
-import 'package:eventpass_app/infrastructure/config/api_config.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:eventpass_app/infrastructure/config/api_client.dart';
+import 'package:eventpass_app/infrastructure/config/app_config.dart';
 
 class AuthenticationRepositoryImplementation
     implements AuthenticationRepository {
   final Dio? _dio;
-  final _secureStorage = const FlutterSecureStorage();
+  final ApiClient _apiClient = ApiClient();
 
   AuthenticationRepositoryImplementation({Dio? dio}) : _dio = dio ?? Dio();
-
-  @override
-  Future<Result<User?>> getLoggedInUser() async {
-    try {
-      final userId = await _secureStorage.read(key: 'user_id');
-
-      if (userId == null) {
-        return const Result.success(null);
-      }
-
-      final response = await _dio!.get(
-        "${ApiConfig.baseUrl}/users/$userId",
-      );
-
-      User user = User(
-        userId: response.data['data']['user_id'] as String,
-        username: response.data['data']['username'] as String,
-        email: response.data['data']['email'] as String,
-        role: response.data['data']['role'] as String,
-        photoUrl: response.data['data']['photo_url'] as String,
-      );
-
-      return Result.success(user);
-    } catch (e) {
-      return Result.failed(e.toString());
-    }
-  }
 
   @override
   Future<Result<Token>> login(String username, String password) async {
     try {
       final response = await _dio!.post(
-        "${ApiConfig.baseUrl}/auth/login",
+        "${AppConfig.apiBaseUrl}/auth/login",
         data: {
           'username': username,
           'password': password,
@@ -65,21 +37,46 @@ class AuthenticationRepositoryImplementation
 
       return Result.success(token);
     } catch (e) {
-      print(e);
       return Result.failed(e.toString());
     }
   }
 
   @override
-  Future<Result<void>> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<Result<dynamic>> getLoggedInUser(String token) async {
+    try {
+      final response = await _apiClient.dio.get(
+        "${AppConfig.apiBaseUrl}/auth/get_logged_in_user",
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        }),
+      );
+
+      return Result.success(response.data);
+    } catch (e) {
+      return Result.failed(e.toString());
+    }
   }
 
   @override
-  Future<Result<void>> refreshToken(String refreshToken) {
-    // TODO: implement refreshToken
-    throw UnimplementedError();
+  Future<Result<bool>> logout(String refreshToken) async {
+    try {
+      final response = await _dio!.post(
+        "${AppConfig.apiBaseUrl}/auth/logout",
+        options: Options(headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Bearer $refreshToken',
+        }),
+      );
+
+      if (response.data['status'] == 'error') {
+        return Result.failed(response.data['detail']);
+      }
+
+      return const Result.success(true);
+    } catch (e) {
+      return Result.failed(e.toString());
+    }
   }
 
   @override
@@ -120,7 +117,7 @@ class AuthenticationRepositoryImplementation
       }
 
       final response = await _dio!.post(
-        "${ApiConfig.baseUrl}/auth/register",
+        "${AppConfig.apiBaseUrl}/auth/register",
         data: formData,
         options: Options(contentType: 'multipart/form-data'),
       );
@@ -133,11 +130,5 @@ class AuthenticationRepositoryImplementation
     } catch (e) {
       return Result.failed(e.toString());
     }
-  }
-
-  @override
-  Future<Result<void>> saveToken(Token token) {
-    // TODO: implement saveToken
-    throw UnimplementedError();
   }
 }
